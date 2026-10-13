@@ -21,6 +21,7 @@ from pathlib import Path
 
 import torch
 import torch.nn.functional as F
+import torchvision.transforms.functional as TVF
 from diffusers import WanImageToVideoPipeline
 from diffusers.utils import export_to_video, load_image
 
@@ -59,6 +60,30 @@ def cosine_to_prior(latents_bcthw: torch.Tensor, prior_tchw: torch.Tensor) -> fl
     if delta.shape != prior.shape:
         raise RuntimeError(f"delta/prior mismatch: {tuple(delta.shape)} vs {tuple(prior.shape)}")
     return float(F.cosine_similarity(delta.float().flatten(1), prior.float().flatten(1)).mean())
+
+
+def encode_wan_video_to_latents(pipe, frames) -> torch.Tensor:
+    """Encode generated frames with Wan's native latent normalization.
+
+    PhaseLock's released helper assumes a Stable-Diffusion-style scalar
+    ``scaling_factor``. AutoencoderKLWan instead defines one mean and standard
+    deviation per latent channel. This follows WanImageToVideoPipeline's own
+    encode/decode convention and returns PhaseLock's expected T,C,H,W layout.
+    Posterior mode is used so the same generated prior has one deterministic
+    representation.
+    """
+
+    frame_tensors = torch.stack([TVF.to_tensor(frame) for frame in frames])
+    video = (2.0 * frame_tensors - 1.0).permute(1, 0, 2, 3).unsqueeze(0)
+    video = video.to(device=pipe._execution_device, dtype=pipe.vae.dtype)
+    with torch.no_grad():
+        raw = pipe.vae.encode(video).latent_dist.mode()
+    mean = torch.tensor(pipe.vae.config.latents_mean).view(1, pipe.vae.config.z_dim, 1, 1, 1)
+    std = torch.tensor(pipe.vae.config.latents_std).view(1, pipe.vae.config.z_dim, 1, 1, 1)
+    mean = mean.to(raw.device, raw.dtype)
+    std = std.to(raw.device, raw.dtype)
+    normalized = (raw - mean) / std
+    return normalized.squeeze(0).permute(1, 0, 2, 3)
 
 
 def main() -> None:
@@ -117,9 +142,7 @@ def main() -> None:
 
     sys.path.insert(0, str(args.phaselock_code))
     from phaselock.guidance import LatentDeltaGuidance, extract_motion_prior
-    from phaselock.utils import encode_video_to_latents
-
-    few_latents = encode_video_to_latents(pipe, few_result, torch.device("cuda"))
+    few_latents = encode_wan_video_to_latents(pipe, few_result)
     motion_prior = extract_motion_prior(few_latents).detach()
     guide = LatentDeltaGuidance(
         motion_prior=motion_prior,
@@ -182,6 +205,11 @@ def main() -> None:
         "phaselock_revision_expected": payload["phaselock_revision"],
         "phaselock_revision_actual": git_revision(args.phaselock_code.parent),
         "generation": generation,
+        "wan_phaselock_adapter": {
+            "latent_layout": "Wan B,C,T,H,W <-> PhaseLock B,T,C,H,W",
+            "vae_normalization": "(z - latents_mean) / latents_std",
+            "vae_posterior": "mode"
+        },
         "torch_version": torch.__version__,
         "diffusers_version": __import__("diffusers").__version__,
         "outputs": {
