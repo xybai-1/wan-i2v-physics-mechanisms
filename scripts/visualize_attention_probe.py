@@ -119,7 +119,11 @@ def main() -> None:
         (f"self_{primary_label}_to_{secondary_label}", "primary entity → secondary entity"),
     ):
         figure, axes = plt.subplots(
-            len(arms), len(display_steps), figsize=(3.0 * len(display_steps), 5.5), squeeze=False
+            len(arms),
+            len(display_steps),
+            figsize=(3.0 * len(display_steps), 6.8),
+            squeeze=False,
+            layout="constrained",
         )
         for row, (arm_name, (arrays, _)) in enumerate(arms.items()):
             for column, step in enumerate(display_steps):
@@ -131,8 +135,7 @@ def main() -> None:
                 if column == 0:
                     axis.set_ylabel(f"{arm_name}\nquery frame")
                 figure.colorbar(image, ax=axis, fraction=0.046, pad=0.03)
-        figure.suptitle(f"Sparse self-attention: {title}, layer {self_layer}")
-        figure.tight_layout()
+        figure.suptitle(f"Sparse self-attention: {title}, layer {self_layer}", fontsize=15)
         figure.savefig(args.output_dir / f"{relation}_connectivity.png", dpi=180)
         plt.close(figure)
 
