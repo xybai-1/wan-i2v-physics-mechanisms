@@ -11,7 +11,7 @@ data/
 models/
 cache/
 outputs/
-results/
+results/*
 logs/
 upstream/
 
