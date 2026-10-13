@@ -48,9 +48,18 @@ def main() -> None:
         ids.add(video_id)
         if case.get("stratum") not in ALLOWED_STRATA:
             raise SystemExit(f"{prefix}: invalid stratum")
-        for field in ("prompt", "first_image", "entity_tokens", "events"):
+        for field in (
+            "prompt",
+            "first_image",
+            "first_image_url",
+            "first_image_sha256",
+            "entity_tokens",
+            "events",
+        ):
             if not case.get(field):
                 raise SystemExit(f"{prefix}: missing {field}")
+        if len(case["first_image_sha256"]) != 64:
+            raise SystemExit(f"{prefix}: first_image_sha256 must be a SHA-256 hex digest")
         event_ids = [event.get("id") for event in case["events"]]
         if any(not event_id for event_id in event_ids) or len(event_ids) != len(set(event_ids)):
             raise SystemExit(f"{prefix}: event IDs must be non-empty and unique")

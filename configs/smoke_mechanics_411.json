@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "benchmark": "PhyGround",
+  "selection_frozen": true,
+  "selection_reason": "Single multi-entity collision smoke case for validating the formation-versus-preservation instrumentation before any broader run.",
+  "model_id": "Wan-AI/Wan2.1-I2V-14B-720P-Diffusers",
+  "model_revision": "eb849f76dfa246545b65774a9e25943ee69b3fa3",
+  "phaselock_revision": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "phyground_revision": "222c77403e30f7fa1b663834379cac1d5122fc42",
+  "seeds": [42],
+  "generation": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "fps": 16,
+    "num_inference_steps": 40,
+    "few_step_count": 2,
+    "guidance_scale": 5.0,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 20
+  },
+  "cases": [
+    {
+      "video_id": "mechanics_411",
+      "stratum": "collision_momentum",
+      "prompt": "A bowling ball rolls down a polished wooden lane, hitting the pins at the end.",
+      "physical_laws": ["collision", "momentum", "impenetrability", "reflection"],
+      "first_image": "first_images/mechanics_411.jpg",
+      "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/main/first_images/mechanics_411.jpg",
+      "first_image_sha256": "8c12c8f4b6d18ea5460f8d0b711b8581895dda843009f468fed33cbda8070f82",
+      "entity_tokens": ["bowling ball", "pins"],
+      "events": [
+        {"id": "e1", "text": "the bowling ball rolls down the lane"},
+        {"id": "e2", "text": "the bowling ball contacts the pins"},
+        {"id": "e3", "text": "momentum transfers through the pins"}
+      ],
+      "expected_event_order": ["e1", "e2", "e3"],
+      "notes": "Official PhyGround prompt and first image. The prompt intentionally retains the benchmark's future-event wording."
+    }
+  ]
+}
