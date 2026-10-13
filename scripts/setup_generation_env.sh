@@ -9,7 +9,10 @@ model_revision="eb849f76dfa246545b65774a9e25943ee69b3fa3"
 phaselock_dir="${state_root}/upstream/phaselock"
 
 module purge
-module load standard python/3.12 cuda/12.8
+module load standard
+module load gcc/13
+module load python/3.12
+module load cuda/12.8
 
 if [[ ! -x "${env_dir}/bin/python" ]]; then
   python -m venv "${env_dir}"

@@ -21,7 +21,10 @@ repo_root=/home/baix2/wan-i2v-physics-mechanisms
 state_root=/home/baix2/wan-i2v-state
 
 module purge
-module load standard python/3.12 cuda/12.8
+module load standard
+module load gcc/13
+module load python/3.12
+module load cuda/12.8
 export HF_HOME="${state_root}/cache/huggingface"
 export TOKENIZERS_PARALLELISM=false
 

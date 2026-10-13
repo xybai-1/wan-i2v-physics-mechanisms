@@ -16,7 +16,9 @@ state_root=/home/baix2/wan-i2v-state
 base="${state_root}/runs/smoke/mechanics_411/seed_42"
 
 module purge
-module load standard python/3.12
+module load standard
+module load gcc/13
+module load python/3.12
 
 "${state_root}/envs/wan-smoke/bin/python" "${repo_root}/scripts/visualize_smoke.py" \
   --baseline-dir "${base}/baseline" \
