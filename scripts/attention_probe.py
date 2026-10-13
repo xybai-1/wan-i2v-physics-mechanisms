@@ -92,14 +92,19 @@ class WanAttentionProbeState:
     ):
         self.token_positions = token_positions
         self.token_metadata = token_metadata
+        labels = list(token_positions)
+        if len(labels) < 2:
+            raise ValueError("attention probe requires at least two ordered entity targets")
+        self.primary_label = labels[0]
+        self.secondary_label = labels[1]
         self.grid_thw = grid_thw
         self.plan = plan
         self.forward_index = -1
         self.step_index = -1
         self.branch = "unknown"
         self.cross_maps: dict[tuple[int, int, str], torch.Tensor] = {}
-        self.ball_connectivity: dict[tuple[int, int], torch.Tensor] = {}
-        self.ball_to_pins: dict[tuple[int, int], torch.Tensor] = {}
+        self.primary_connectivity: dict[tuple[int, int], torch.Tensor] = {}
+        self.primary_to_secondary: dict[tuple[int, int], torch.Tensor] = {}
         self.events: list[dict] = []
 
     def begin_transformer_forward(self) -> None:
@@ -115,10 +120,12 @@ class WanAttentionProbeState:
         arrays: dict[str, np.ndarray] = {}
         for (step, layer, label), value in self.cross_maps.items():
             arrays[f"cross_s{step:02d}_l{layer:02d}_{_safe_name(label)}"] = value.numpy()
-        for (step, layer), value in self.ball_connectivity.items():
-            arrays[f"self_ball_s{step:02d}_l{layer:02d}"] = value.numpy()
-        for (step, layer), value in self.ball_to_pins.items():
-            arrays[f"self_ball_to_pins_s{step:02d}_l{layer:02d}"] = value.numpy()
+        for (step, layer), value in self.primary_connectivity.items():
+            arrays[f"self_{_safe_name(self.primary_label)}_s{step:02d}_l{layer:02d}"] = value.numpy()
+        for (step, layer), value in self.primary_to_secondary.items():
+            arrays[
+                f"self_{_safe_name(self.primary_label)}_to_{_safe_name(self.secondary_label)}_s{step:02d}_l{layer:02d}"
+            ] = value.numpy()
         np.savez_compressed(output_dir / "attention_maps.npz", **arrays)
         metadata = {
             "schema_version": 1,
@@ -133,11 +140,15 @@ class WanAttentionProbeState:
                 "support_topk_per_frame": self.plan.support_topk_per_frame,
             },
             "tokenization": self.token_metadata,
+            "entity_roles": {
+                "primary": self.primary_label,
+                "secondary": self.secondary_label,
+            },
             "events": self.events,
             "interpretation": {
                 "cross_maps": "Exact text-normalized, head-mean video-query attention for selected text spans.",
-                "self_ball": "Attention mass from ball-guided queries to ball-guided key supports by query/key frame.",
-                "self_ball_to_pins": "Attention mass from ball-guided queries to pins-guided key supports by query/key frame.",
+                "self_primary": "Attention mass from primary-entity queries to primary-entity key supports by query/key frame.",
+                "self_primary_to_secondary": "Attention mass from primary-entity queries to secondary-entity key supports by query/key frame.",
                 "caveat": "Attention is a correlational diagnostic, not causal proof.",
             },
         }
@@ -216,30 +227,30 @@ class ProbingWanAttnProcessor:
 
     def _collect_self(self, attn, hidden_states: torch.Tensor, rotary_emb) -> None:
         source_layer = self.layer - 1
-        ball_key = (self.state.step_index, source_layer, "ball")
-        pins_key = (self.state.step_index, source_layer, "pins")
-        if ball_key not in self.state.cross_maps or pins_key not in self.state.cross_maps:
+        primary_key = (self.state.step_index, source_layer, self.state.primary_label)
+        secondary_key = (self.state.step_index, source_layer, self.state.secondary_label)
+        if primary_key not in self.state.cross_maps or secondary_key not in self.state.cross_maps:
             raise RuntimeError(
                 f"self probe layer {self.layer} requires cross maps from layer {source_layer}"
             )
-        ball_map = self.state.cross_maps[ball_key]
-        pins_map = self.state.cross_maps[pins_key]
-        ball_queries = self._topk_by_frame(ball_map, self.state.plan.query_topk_per_frame)
-        ball_support = self._topk_by_frame(ball_map, self.state.plan.support_topk_per_frame)
-        pins_support = self._topk_by_frame(pins_map, self.state.plan.support_topk_per_frame)
+        primary_map = self.state.cross_maps[primary_key]
+        secondary_map = self.state.cross_maps[secondary_key]
+        primary_queries = self._topk_by_frame(primary_map, self.state.plan.query_topk_per_frame)
+        primary_support = self._topk_by_frame(primary_map, self.state.plan.support_topk_per_frame)
+        secondary_support = self._topk_by_frame(secondary_map, self.state.plan.support_topk_per_frame)
 
         query = attn.norm_q(attn.to_q(hidden_states)).unflatten(2, (attn.heads, -1))
         key = attn.norm_k(attn.to_k(hidden_states)).unflatten(2, (attn.heads, -1))
         query = _apply_rotary(query, rotary_emb)
         key = _apply_rotary(key, rotary_emb)
         device = query.device
-        query_indices = torch.cat(ball_queries).to(device)
+        query_indices = torch.cat(primary_queries).to(device)
         query_frames = torch.cat(
-            [torch.full((len(indices),), frame, dtype=torch.long) for frame, indices in enumerate(ball_queries)]
+            [torch.full((len(indices),), frame, dtype=torch.long) for frame, indices in enumerate(primary_queries)]
         )
         t = self.state.grid_thw[0]
-        ball_matrix = torch.zeros((t, t), dtype=torch.float64)
-        pins_matrix = torch.zeros((t, t), dtype=torch.float64)
+        primary_matrix = torch.zeros((t, t), dtype=torch.float64)
+        secondary_matrix = torch.zeros((t, t), dtype=torch.float64)
         counts = torch.zeros(t, dtype=torch.float64)
         scale = 1.0 / math.sqrt(query.shape[-1])
         chunk_size = self.state.plan.query_chunk_size
@@ -252,16 +263,16 @@ class ProbingWanAttnProcessor:
                 counts[query_frame] += 1
                 row = mean_probabilities[local_index]
                 for key_frame in range(t):
-                    ball_matrix[query_frame, key_frame] += float(
-                        row.index_select(0, ball_support[key_frame].to(device)).sum().cpu()
+                    primary_matrix[query_frame, key_frame] += float(
+                        row.index_select(0, primary_support[key_frame].to(device)).sum().cpu()
                     )
-                    pins_matrix[query_frame, key_frame] += float(
-                        row.index_select(0, pins_support[key_frame].to(device)).sum().cpu()
+                    secondary_matrix[query_frame, key_frame] += float(
+                        row.index_select(0, secondary_support[key_frame].to(device)).sum().cpu()
                     )
             del logits, mean_probabilities
         counts = counts.clamp_min(1).unsqueeze(1)
-        self.state.ball_connectivity[(self.state.step_index, self.layer)] = (ball_matrix / counts).float()
-        self.state.ball_to_pins[(self.state.step_index, self.layer)] = (pins_matrix / counts).float()
+        self.state.primary_connectivity[(self.state.step_index, self.layer)] = (primary_matrix / counts).float()
+        self.state.primary_to_secondary[(self.state.step_index, self.layer)] = (secondary_matrix / counts).float()
         self.state.events.append(
             {"kind": "self", "step": self.state.step_index, "layer": self.layer, "source_cross_layer": source_layer}
         )

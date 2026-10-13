@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "benchmark": "PhyGround",
+  "selection_frozen": true,
+  "selection_reason": "Four matched low/high interaction-complexity pairs for testing event formation versus preservation after the single-case attention probe passes.",
+  "model_id": "Wan-AI/Wan2.1-I2V-14B-720P-Diffusers",
+  "model_revision": "eb849f76dfa246545b65774a9e25943ee69b3fa3",
+  "phaselock_revision": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "phyground_revision": "daafe35165db3c3f6832d92039c9ae8d6808274a",
+  "phyground_prompt_sha256": "2b89621dfe857ebc4d33f2569b72de5aac4cd1db49452aef656ed9689706bc30",
+  "seeds": [42],
+  "generation": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "fps": 16,
+    "num_inference_steps": 40,
+    "few_step_count": 2,
+    "guidance_scale": 5.0,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 20
+  },
+  "cases": [
+    {
+      "video_id": "collision_145",
+      "pair_id": "bowling_entity_count",
+      "complexity": "low",
+      "stratum": "collision_momentum",
+      "prompt": "A heavy bowling pin is nudged with the tip of a bowling ball, causing it to fall.",
+      "physical_laws": ["collision", "gravity", "impenetrability", "momentum"],
+      "first_image": "first_images/collision_145.jpg",
+      "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/collision_145.jpg",
+      "first_image_sha256": "853a63c9601d2266c3a3e853d5be9e2aeb8bc1fec600abc823791323960bfa0b",
+      "entity_tokens": ["bowling ball", "bowling pin"],
+      "attention_targets": {"primary": "bowling ball", "secondary": "bowling pin", "event": "nudged"},
+      "events": [
+        {"id": "e1", "text": "the ball approaches the pin"},
+        {"id": "e2", "text": "the ball contacts the pin"},
+        {"id": "e3", "text": "the pin falls"}
+      ],
+      "expected_event_order": ["e1", "e2", "e3"]
+    },
+    {
+      "video_id": "mechanics_411",
+      "pair_id": "bowling_entity_count",
+      "complexity": "high",
+      "stratum": "collision_momentum",
+      "prompt": "A bowling ball rolls down a polished wooden lane, hitting the pins at the end.",
+      "physical_laws": ["collision", "momentum", "impenetrability", "reflection"],
+      "first_image": "first_images/mechanics_411.jpg",
+      "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/mechanics_411.jpg",
+      "first_image_sha256": "8c12c8f4b6d18ea5460f8d0b711b8581895dda843009f468fed33cbda8070f82",
+      "entity_tokens": ["bowling ball", "pins"],
+      "attention_targets": {"primary": "bowling ball", "secondary": "pins", "event": "hitting"},
+      "events": [
+        {"id": "e1", "text": "the ball rolls down the lane"},
+        {"id": "e2", "text": "the ball contacts the pins"},
+        {"id": "e3", "text": "momentum propagates through the pins"}
+      ],
+      "expected_event_order": ["e1", "e2", "e3"]
+    },
+    {
+      "video_id": "0032_perspective-center_trimmed-balls-collide",
+      "pair_id": "ball_transfer_depth",
+      "complexity": "low",
+      "stratum": "collision_momentum",
+      "prompt": "A light-colored wooden tabletop with two pipes at the edges. A blue and yellow tennis ball roll out of the pipes and towards each other. The two balls collide and bounce off each other. Static shot with no camera movement.",
+      "physical_laws": ["momentum", "collision", "impenetrability", "inertia"],
+      "first_image": "first_images/0032_perspective-center_trimmed-balls-collide.jpg",
+      "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0032_perspective-center_trimmed-balls-collide.jpg",
+      "first_image_sha256": "c2956d6e523b4ec30f47f4bf117707a89b25d490e9b53ab9e86ab9d325fe5766",
+      "entity_tokens": ["blue tennis ball", "yellow tennis ball"],
+      "attention_targets": {"primary": "blue", "secondary": "yellow", "event": "collide"},
+      "events": [
+        {"id": "e1", "text": "both balls approach"},
+        {"id": "e2", "text": "the balls collide"},
+        {"id": "e3", "text": "the balls separate"}
+      ],
+      "expected_event_order": ["e1", "e2", "e3"]
+    },
+    {
+      "video_id": "0029_perspective-center_trimmed-ball-train",
+      "pair_id": "ball_transfer_depth",
+      "complexity": "high",
+      "stratum": "collision_momentum",
+      "prompt": "A light-colored coffee table with two tennis balls, one orange and one brown, placed near the center back to back. A grey tennis ball rolls out of a black pipe sitting on the table and towards the other two balls. The rolling grey ball collides with the stationary balls, causing them to scatter. Static shot with no camera movement.",
+      "physical_laws": ["collision", "momentum", "inertia", "impenetrability"],
+      "first_image": "first_images/0029_perspective-center_trimmed-ball-train.jpg",
+      "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0029_perspective-center_trimmed-ball-train.jpg",
+      "first_image_sha256": "118288fbb65fc9fbb221df92be801fd200e5ec0238c361d675985f11aed087a5",
+      "entity_tokens": ["grey tennis ball", "other two balls"],
+      "attention_targets": {"primary": "grey tennis ball", "secondary": "other two balls", "event": "collides"},
+      "events": [
+        {"id": "e1", "text": "the grey ball approaches"},
+        {"id": "e2", "text": "the grey ball contacts the pair"},
+        {"id": "e3", "text": "the stationary balls scatter"}
+      ],
+      "expected_event_order": ["e1", "e2", "e3"]
+    },
+    {
+      "video_id": "0035_perspective-center_trimmed-block-domino",
+      "pair_id": "domino_bridge",
+      "complexity": "low",
+      "stratum": "multi_stage_causal",
+      "prompt": "A row of colorful wooden blocks lined up on a wooden table with a wooden stick attached to a black rotating platform. The platform rotates clockwise and the wooden stick hits the first block as it rotates. The blocks topple over one by one in a domino chain reaction. Static shot with no camera movement.",
+      "physical_laws": ["collision", "momentum", "impenetrability", "inertia"],
+      "first_image": "first_images/0035_perspective-center_trimmed-block-domino.jpg",
+      "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0035_perspective-center_trimmed-block-domino.jpg",
+      "first_image_sha256": "8b7fcc864d5f5dbee8993773c155e24b56b88b6fde05abfeafd4c90bece2a594",
+      "entity_tokens": ["wooden stick", "blocks"],
+      "attention_targets": {"primary": "wooden stick", "secondary": "blocks", "event": "hits"},
+      "events": [
+        {"id": "e1", "text": "the platform rotates the stick"},
+        {"id": "e2", "text": "the stick contacts the first block"},
+        {"id": "e3", "text": "the chain topples sequentially"}
+      ],
+      "expected_event_order": ["e1", "e2", "e3"]
+    },
+    {
+      "video_id": "0050_perspective-center_trimmed-dominos-with-space",
+      "pair_id": "domino_bridge",
+      "complexity": "high",
+      "stratum": "multi_stage_causal",
+      "prompt": "Two rows of alternating black and white dominoes are set up on a wooden table with a gap between the two rows. A wooden stick attached to a rotating platform rotates clockwise and knocks the first domino in the first row. The dominoes in the first row topple over one by one, bridging the gap and causing the second row to also topple. Static shot with no camera movement.",
+      "physical_laws": ["collision", "momentum", "impenetrability", "gravity"],
+      "first_image": "first_images/0050_perspective-center_trimmed-dominos-with-space.jpg",
+      "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0050_perspective-center_trimmed-dominos-with-space.jpg",
+      "first_image_sha256": "12f9bb1a83d6dcfcae4bff8dbd4f3d96f7ea764db6f0224c41a76462d9cb63f5",
+      "entity_tokens": ["first row", "second row"],
+      "attention_targets": {"primary": "first row", "secondary": "second row", "event": "bridging"},
+      "events": [
+        {"id": "e1", "text": "the first row topples"},
+        {"id": "e2", "text": "a domino bridges the gap"},
+        {"id": "e3", "text": "the second row topples"}
+      ],
+      "expected_event_order": ["e1", "e2", "e3"]
+    },
+    {
+      "video_id": "0173_perspective-center_trimmed-stable-blocks",
+      "pair_id": "structure_collapse",
+      "complexity": "low",
+      "stratum": "multi_stage_causal",
+      "prompt": "A pink block is being lowered towards a simple structure made of colorful blocks resembling a gate. The pink block hits the gate structure, causing it to collapse. Static shot with no camera movement.",
+      "physical_laws": ["gravity", "impenetrability", "inertia"],
+      "first_image": "first_images/0173_perspective-center_trimmed-stable-blocks.jpg",
+      "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0173_perspective-center_trimmed-stable-blocks.jpg",
+      "first_image_sha256": "4997e242f90c2dad6570a9434fd25be4d8880c759f3b0262ce1fc1b94e5d977e",
+      "entity_tokens": ["pink block", "gate structure"],
+      "attention_targets": {"primary": "pink block", "secondary": "gate structure", "event": "hits"},
+      "events": [
+        {"id": "e1", "text": "the pink block is lowered"},
+        {"id": "e2", "text": "the pink block contacts the gate"},
+        {"id": "e3", "text": "the gate collapses"}
+      ],
+      "expected_event_order": ["e1", "e2", "e3"]
+    },
+    {
+      "video_id": "0182_perspective-center_trimmed-unstable-block-stack",
+      "pair_id": "structure_collapse",
+      "complexity": "high",
+      "stratum": "multi_stage_causal",
+      "prompt": "A grabber tool carefully placing a blue wooden block on top of a yellow block which is balanced on a red block forming an L shape. The stack loses its balance and collapses. Static shot with no camera movement.",
+      "physical_laws": ["gravity", "impenetrability", "inertia"],
+      "first_image": "first_images/0182_perspective-center_trimmed-unstable-block-stack.jpg",
+      "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0182_perspective-center_trimmed-unstable-block-stack.jpg",
+      "first_image_sha256": "9ab332a2344535fb10feaf6131b54272d679851605a974910864632b99b3a0f0",
+      "entity_tokens": ["blue wooden block", "stack"],
+      "attention_targets": {"primary": "blue wooden block", "secondary": "stack", "event": "collapses"},
+      "events": [
+        {"id": "e1", "text": "the blue block is placed"},
+        {"id": "e2", "text": "the L-shaped stack becomes unstable"},
+        {"id": "e3", "text": "the stack collapses"}
+      ],
+      "expected_event_order": ["e1", "e2", "e3"]
+    }
+  ]
+}

@@ -66,6 +66,21 @@ def main() -> None:
         order = case.get("expected_event_order", [])
         if set(order) - set(event_ids):
             raise SystemExit(f"{prefix}: expected_event_order references unknown event")
+        targets = case.get("attention_targets")
+        if not isinstance(targets, dict) or len(targets) < 3:
+            raise SystemExit(f"{prefix}: attention_targets must define two entities and one event")
+        prompt_lower = case["prompt"].lower()
+        for label, phrase in targets.items():
+            if not isinstance(phrase, str) or phrase.lower() not in prompt_lower:
+                raise SystemExit(f"{prefix}: attention target {label!r} is not a prompt substring")
+
+    pair_ids = [case.get("pair_id") for case in cases if case.get("pair_id")]
+    if pair_ids:
+        from collections import Counter
+
+        pair_counts = Counter(pair_ids)
+        if any(count != 2 for count in pair_counts.values()):
+            raise SystemExit("every declared pair_id must occur exactly twice")
 
     print(f"valid manifest: {len(cases)} cases, {len(seeds)} seeds")
 
