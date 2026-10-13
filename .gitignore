@@ -24,4 +24,6 @@ upstream/
 results/goose/*
 !results/goose/mechanics_411/
 !results/goose/mechanics_411/**
+!results/goose/phyground_attention_8/
+!results/goose/phyground_attention_8/**
 

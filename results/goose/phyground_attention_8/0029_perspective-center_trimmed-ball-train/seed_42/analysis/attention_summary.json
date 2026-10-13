@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "cross_layer": 38,
+  "self_layer": 39,
+  "steps_zero_based": [
+    0,
+    1,
+    2,
+    4,
+    9,
+    19
+  ],
+  "metrics_are_descriptive_not_causal": true,
+  "arms": {
+    "baseline": {
+      "0": {
+        "primary": {
+          "mean_normalized_spatial_entropy": 0.988775468703956,
+          "centroid_net_displacement_tokens": 1.0057948957177025,
+          "mean_cross_attention": 5.111157224746421e-05
+        },
+        "secondary": {
+          "mean_normalized_spatial_entropy": 0.990724907248759,
+          "centroid_net_displacement_tokens": 1.9193772623470726,
+          "mean_cross_attention": 1.185908058687346e-05
+        },
+        "event": {
+          "mean_normalized_spatial_entropy": 0.9947081349197335,
+          "centroid_net_displacement_tokens": 0.9159626975386839,
+          "mean_cross_attention": 2.2048627215554006e-05
+        },
+        "self_attention": {
+          "primary_same_frame_mean": 0.009749112650752068,
+          "primary_next_frame_mean": 0.002085084328427911,
+          "primary_to_secondary_same_frame_mean": 0.006636612582951784,
+          "primary_to_secondary_total_mean": 0.0010910301934927702
+        }
+      },
+      "1": {
+        "primary": {
+          "mean_normalized_spatial_entropy": 0.9953980315991583,
+          "centroid_net_displacement_tokens": 0.24795053478896112,
+          "mean_cross_attention": 3.2379513868363574e-05
+        },
+        "secondary": {
+          "mean_normalized_spatial_entropy": 0.9975928507116788,
+          "centroid_net_displacement_tokens": 0.5347278615448291,
+          "mean_cross_attention": 7.435484803863801e-06
+        },
+        "event": {
+          "mean_normalized_spatial_entropy": 0.9968959319620354,
+          "centroid_net_displacement_tokens": 0.6412124108899961,
+          "mean_cross_attention": 1.9758581402129494e-05
+        },
+        "self_attention": {
+          "primary_same_frame_mean": 0.017985671758651733,
+          "primary_next_frame_mean": 0.0040288278833031654,
+          "primary_to_secondary_same_frame_mean": 0.004386582877486944,
+          "primary_to_secondary_total_mean": 0.0008611673256382346
+        }
+      },
+      "2": {
+        "primary": {
+          "mean_normalized_spatial_entropy": 0.9969679427952532,
+          "centroid_net_displacement_tokens": 0.4183740010728693,
+          "mean_cross_attention": 3.240886144340038e-05
+        },
+        "secondary": {
+          "mean_normalized_spatial_entropy": 0.9975870346953686,
+          "centroid_net_displacement_tokens": 0.5010417654977849,
+          "mean_cross_attention": 7.843791536288336e-06
+        },
+        "event": {
+          "mean_normalized_spatial_entropy": 0.996950528878485,
+          "centroid_net_displacement_tokens": 0.5528102247516836,
+          "mean_cross_attention": 2.070206573989708e-05
+        },
+        "self_attention": {
+          "primary_same_frame_mean": 0.01577511429786682,
+          "primary_next_frame_mean": 0.00371129484847188,
+          "primary_to_secondary_same_frame_mean": 0.005244372878223658,
+          "primary_to_secondary_total_mean": 0.001078960602171719
+        }
+      },
+      "4": {
+        "primary": {
+          "mean_normalized_spatial_entropy": 0.9968606576683966,
+          "centroid_net_displacement_tokens": 0.33559351769433654,
+          "mean_cross_attention": 3.2323521736543626e-05
+        },
+        "secondary": {
+          "mean_normalized_spatial_entropy": 0.9964673369709155,
+          "centroid_net_displacement_tokens": 0.5059466590728446,
+          "mean_cross_attention": 8.446499123238027e-06
+        },
+        "event": {
+          "mean_normalized_spatial_entropy": 0.9960105805110763,
+          "centroid_net_displacement_tokens": 0.49896072704686273,
+          "mean_cross_attention": 2.206461977038998e-05
+        },
+        "self_attention": {
+          "primary_same_frame_mean": 0.027577025815844536,
+          "primary_next_frame_mean": 0.007181418593972921,
+          "primary_to_secondary_same_frame_mean": 0.015467639081180096,
+          "primary_to_secondary_total_mean": 0.001959818648174405
+        }
+      },
+      "9": {
+        "primary": {
+          "mean_normalized_spatial_entropy": 0.9952397361796256,
+          "centroid_net_displacement_tokens": 0.17361008580924778,
+          "mean_cross_attention": 3.2989562896545976e-05
+        },
+        "secondary": {
+          "mean_normalized_spatial_entropy": 0.9915265551943355,
+          "centroid_net_displacement_tokens": 0.48832016929085736,
+          "mean_cross_attention": 9.169547411147505e-06
+        },
+        "event": {
+          "mean_normalized_spatial_entropy": 0.9922444512457447,
+          "centroid_net_displacement_tokens": 0.5091392987875024,
+          "mean_cross_attention": 2.2945512682781555e-05
+        },
+        "self_attention": {
+          "primary_same_frame_mean": 0.031489379703998566,
+          "primary_next_frame_mean": 0.006698188837617636,
+          "primary_to_secondary_same_frame_mean": 0.026739878579974174,
+          "primary_to_secondary_total_mean": 0.002761068055406213
+        }
+      },
+      "19": {
+        "primary": {
+          "mean_normalized_spatial_entropy": 0.9957785147387693,
+          "centroid_net_displacement_tokens": 0.3861085145032772,
+          "mean_cross_attention": 3.2249707146547735e-05
+        },
+        "secondary": {
+          "mean_normalized_spatial_entropy": 0.9916042417292323,
+          "centroid_net_displacement_tokens": 0.5033411341927343,
+          "mean_cross_attention": 9.646462785894983e-06
+        },
+        "event": {
+          "mean_normalized_spatial_entropy": 0.9943871598401641,
+          "centroid_net_displacement_tokens": 0.6064026396408344,
+          "mean_cross_attention": 2.2506112145492807e-05
+        },
+        "self_attention": {
+          "primary_same_frame_mean": 0.03366803750395775,
+          "primary_next_frame_mean": 0.004822414368391037,
+          "primary_to_secondary_same_frame_mean": 0.027826353907585144,
+          "primary_to_secondary_total_mean": 0.0026958559174090624
+        }
+      }
+    },
+    "phaselock": {
+      "0": {
+        "primary": {
+          "mean_normalized_spatial_entropy": 0.988775468703956,
+          "centroid_net_displacement_tokens": 1.0057948957177025,
+          "mean_cross_attention": 5.111157224746421e-05
+        },
+        "secondary": {
+          "mean_normalized_spatial_entropy": 0.990724907248759,
+          "centroid_net_displacement_tokens": 1.9193772623470726,
+          "mean_cross_attention": 1.185908058687346e-05
+        },
+        "event": {
+          "mean_normalized_spatial_entropy": 0.9947081349197335,
+          "centroid_net_displacement_tokens": 0.9159626975386839,
+          "mean_cross_attention": 2.2048627215554006e-05
+        },
+        "self_attention": {
+          "primary_same_frame_mean": 0.009749112650752068,
+          "primary_next_frame_mean": 0.002085084328427911,
+          "primary_to_secondary_same_frame_mean": 0.006636612582951784,
+          "primary_to_secondary_total_mean": 0.0010910301934927702
+        }
+      },
+      "1": {
+        "primary": {
+          "mean_normalized_spatial_entropy": 0.9978362838002288,
+          "centroid_net_displacement_tokens": 0.1370833307095313,
+          "mean_cross_attention": 2.8919883334310725e-05
+        },
+        "secondary": {
+          "mean_normalized_spatial_entropy": 0.9962764035123558,
+          "centroid_net_displacement_tokens": 0.5087670130427259,
+          "mean_cross_attention": 9.479612344875932e-06
+        },
+        "event": {
+          "mean_normalized_spatial_entropy": 0.9975361336395988,
+          "centroid_net_displacement_tokens": 0.49751678454439474,
+          "mean_cross_attention": 2.1803294657729566e-05
+        },
+        "self_attention": {
+          "primary_same_frame_mean": 0.017696423456072807,
+          "primary_next_frame_mean": 0.0043641855008900166,
+          "primary_to_secondary_same_frame_mean": 0.01198222953826189,
+          "primary_to_secondary_total_mean": 0.0015293770702555776
+        }
+      },
+      "2": {
+        "primary": {
+          "mean_normalized_spatial_entropy": 0.9983062184732356,
+          "centroid_net_displacement_tokens": 0.28745711349685765,
+          "mean_cross_attention": 3.1198949727695435e-05
+        },
+        "secondary": {
+          "mean_normalized_spatial_entropy": 0.9968573423300149,
+          "centroid_net_displacement_tokens": 0.5819410581554142,
+          "mean_cross_attention": 1.021091975417221e-05
+        },
+        "event": {
+          "mean_normalized_spatial_entropy": 0.9982415482064608,
+          "centroid_net_displacement_tokens": 0.3164384587309196,
+          "mean_cross_attention": 2.208224032074213e-05
+        },
+        "self_attention": {
+          "primary_same_frame_mean": 0.01711163856089115,
+          "primary_next_frame_mean": 0.0037866798229515553,
+          "primary_to_secondary_same_frame_mean": 0.014437548816204071,
+          "primary_to_secondary_total_mean": 0.0016181006794795394
+        }
+      },
+      "4": {
+        "primary": {
+          "mean_normalized_spatial_entropy": 0.9977154654820214,
+          "centroid_net_displacement_tokens": 0.36788492135386647,
+          "mean_cross_attention": 3.308221494080499e-05
+        },
+        "secondary": {
+          "mean_normalized_spatial_entropy": 0.9953219268598718,
+          "centroid_net_displacement_tokens": 0.6132181041646904,
+          "mean_cross_attention": 1.0695078344724607e-05
+        },
+        "event": {
+          "mean_normalized_spatial_entropy": 0.9970523241246148,
+          "centroid_net_displacement_tokens": 0.3946182859906079,
+          "mean_cross_attention": 2.3209293431136757e-05
+        },
+        "self_attention": {
+          "primary_same_frame_mean": 0.017207255586981773,
+          "primary_next_frame_mean": 0.004344372544437647,
+          "primary_to_secondary_same_frame_mean": 0.014806093648076057,
+          "primary_to_secondary_total_mean": 0.0016873095883056521
+        }
+      },
+      "9": {
+        "primary": {
+          "mean_normalized_spatial_entropy": 0.9968105970412441,
+          "centroid_net_displacement_tokens": 0.4943996640808233,
+          "mean_cross_attention": 3.319819370517507e-05
+        },
+        "secondary": {
+          "mean_normalized_spatial_entropy": 0.9943161103791474,
+          "centroid_net_displacement_tokens": 0.8221885533793302,
+          "mean_cross_attention": 1.0340301741962321e-05
+        },
+        "event": {
+          "mean_normalized_spatial_entropy": 0.995566923560766,
+          "centroid_net_displacement_tokens": 0.619618151472104,
+          "mean_cross_attention": 2.3124794097384438e-05
+        },
+        "self_attention": {
+          "primary_same_frame_mean": 0.024675613269209862,
+          "primary_next_frame_mean": 0.0059287576004862785,
+          "primary_to_secondary_same_frame_mean": 0.022020362317562103,
+          "primary_to_secondary_total_mean": 0.0020115706138312817
+        }
+      },
+      "19": {
+        "primary": {
+          "mean_normalized_spatial_entropy": 0.9922212490729466,
+          "centroid_net_displacement_tokens": 1.3782030098540203,
+          "mean_cross_attention": 3.8495480112032965e-05
+        },
+        "secondary": {
+          "mean_normalized_spatial_entropy": 0.9869345042372576,
+          "centroid_net_displacement_tokens": 2.066665700653382,
+          "mean_cross_attention": 1.26449504023185e-05
+        },
+        "event": {
+          "mean_normalized_spatial_entropy": 0.9898279740575762,
+          "centroid_net_displacement_tokens": 1.6220413942807743,
+          "mean_cross_attention": 2.7696447432390414e-05
+        },
+        "self_attention": {
+          "primary_same_frame_mean": 0.03553818538784981,
+          "primary_next_frame_mean": 0.0035883658565580845,
+          "primary_to_secondary_same_frame_mean": 0.028680875897407532,
+          "primary_to_secondary_total_mean": 0.0021053168457001448
+        }
+      }
+    }
+  }
+}
