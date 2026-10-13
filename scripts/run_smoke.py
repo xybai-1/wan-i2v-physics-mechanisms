@@ -86,6 +86,13 @@ def main() -> None:
         local_files_only=True,
         low_cpu_mem_usage=True,
     )
+    # Diffusers 0.35.2 preprocesses Wan's CLIP pixels as FP32. Loading every
+    # component with the global BF16 dtype also converts visual_projection,
+    # which makes CLIP's FP32 pooled output fail at the final linear layer.
+    # Keep the small image encoder in its native FP32 while the transformer and
+    # VAE remain BF16. The returned hidden states are cast to transformer_dtype
+    # by WanImageToVideoPipeline before denoising.
+    pipe.image_encoder.to(dtype=torch.float32)
     pipe.enable_model_cpu_offload()
     pipe.vae.enable_tiling()
 
