@@ -30,6 +30,11 @@
       "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/main/first_images/mechanics_411.jpg",
       "first_image_sha256": "8c12c8f4b6d18ea5460f8d0b711b8581895dda843009f468fed33cbda8070f82",
       "entity_tokens": ["bowling ball", "pins"],
+      "attention_targets": {
+        "ball": "bowling ball",
+        "pins": "pins",
+        "impact": "hitting"
+      },
       "events": [
         {"id": "e1", "text": "the bowling ball rolls down the lane"},
         {"id": "e2", "text": "the bowling ball contacts the pins"},
