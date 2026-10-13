@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "benchmark": "PhyGround",
+  "selection_frozen": false,
+  "model_revision": null,
+  "seeds": [42],
+  "cases": [
+    {
+      "video_id": "REPLACE_WITH_PHYGROUND_VIDEO_ID",
+      "stratum": "collision_momentum",
+      "prompt": "REPLACE_WITH_OFFICIAL_PROMPT",
+      "first_image": "REPLACE_WITH_OFFICIAL_FIRST_IMAGE_RELATIVE_PATH",
+      "entity_tokens": ["ball"],
+      "events": [
+        {"id": "e1", "text": "rolls"},
+        {"id": "e2", "text": "hits"},
+        {"id": "e3", "text": "rebounds"}
+      ],
+      "expected_event_order": ["e1", "e2", "e3"],
+      "notes": "Template only; do not submit until replaced and frozen."
+    }
+  ]
+}
+
