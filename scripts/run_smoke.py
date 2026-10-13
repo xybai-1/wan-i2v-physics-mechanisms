@@ -162,6 +162,7 @@ def main() -> None:
         "created_at": datetime.now(timezone.utc).isoformat(),
         "slurm_job_id": os.environ.get("SLURM_JOB_ID"),
         "host": platform.node(),
+        "study_revision": os.environ.get("STUDY_REVISION"),
         "arm": args.arm,
         "benchmark": payload["benchmark"],
         "case_id": args.case_id,

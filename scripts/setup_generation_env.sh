@@ -26,7 +26,7 @@ mkdir -p "${HF_HOME}" "${PIP_CACHE_DIR}" "${model_dir}"
 "${env_dir}/bin/python" -m pip install \
   diffusers==0.35.2 transformers==4.49.0 accelerate==1.10.1 \
   sentencepiece protobuf safetensors hf_xet ftfy \
-  "huggingface_hub[hf_transfer]" "imageio[ffmpeg]" pillow numpy
+  "huggingface_hub[hf_transfer]" "imageio[ffmpeg]" pillow numpy matplotlib
 "${env_dir}/bin/python" -m pip install -e "${phaselock_dir}/code"
 "${env_dir}/bin/python" -m pip check
 

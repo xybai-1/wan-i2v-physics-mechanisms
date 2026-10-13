@@ -32,3 +32,9 @@ to overwrite an existing run directory.
 
 Expected artifacts per arm are `few_step.mp4`, `final.mp4`,
 `latent_delta_trace.json`, and `run.json`.
+
+After both arms complete, submit `visualize_smoke.sbatch`. It creates a latent
+similarity curve, a four-row temporal contact sheet, a machine-readable summary,
+and a manual-review checklist. Attention-map extraction is intentionally a
+separate validation gate because token/frame layout must be verified for the
+Wan I2V implementation before a heatmap can be interpreted.
