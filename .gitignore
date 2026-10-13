@@ -18,3 +18,10 @@ upstream/
 # Keep small manifests and summarized visualizations only.
 !results/README.md
 
+# The completed, reviewed mechanics_411 smoke bundle is deliberately
+# versioned for public reproducibility. Other result trees remain ignored.
+!results/goose/
+results/goose/*
+!results/goose/mechanics_411/
+!results/goose/mechanics_411/**
+

@@ -1,0 +1,26 @@
+{
+  "baseline": {
+    "num_steps": 40,
+    "initial_before": -0.016132067888975143,
+    "final_before": 0.25289350748062134,
+    "early_before_mean": -0.009162134199868888,
+    "late_before_mean": 0.07553710627835244,
+    "final_after": 0.25289350748062134,
+    "minimum_before": -0.016132067888975143
+  },
+  "phaselock": {
+    "num_steps": 40,
+    "initial_before": -0.016132067888975143,
+    "final_before": 0.150138258934021,
+    "early_before_mean": -0.01056915574008599,
+    "late_before_mean": 0.05082155052805319,
+    "final_after": 0.150138258934021,
+    "minimum_before": -0.016132067888975143
+  },
+  "interpretation_boundary": {
+    "formation_failure": "The two-step video lacks the required ball trajectory/contact/event structure.",
+    "preservation_failure": "The two-step video contains a plausible event structure, but the final video loses or corrupts it.",
+    "attention_caveat": "Attention and latent similarity are correlational diagnostics, not causal proof."
+  },
+  "classification": "requires visual review"
+}

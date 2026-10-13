@@ -1,0 +1,42 @@
+{
+  "created_at": "2026-10-13T19:15:33.303786+00:00",
+  "slurm_job_id": "4624",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "cb9c1ae9e0c98b5d8140c03cf61a21ffe4c8e2d3",
+  "arm": "baseline",
+  "benchmark": "PhyGround",
+  "case_id": "mechanics_411",
+  "prompt": "A bowling ball rolls down a polished wooden lane, hitting the pins at the end.",
+  "seed": 42,
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/phyground/first_images/mechanics_411.jpg",
+  "conditioning_sha256": "8c12c8f4b6d18ea5460f8d0b711b8581895dda843009f468fed33cbda8070f82",
+  "model_id": "Wan-AI/Wan2.1-I2V-14B-720P-Diffusers",
+  "model_revision": "eb849f76dfa246545b65774a9e25943ee69b3fa3",
+  "phaselock_revision_expected": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "phaselock_revision_actual": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "generation": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "fps": 16,
+    "num_inference_steps": 40,
+    "few_step_count": 2,
+    "guidance_scale": 5.0,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 20
+  },
+  "wan_phaselock_adapter": {
+    "latent_layout": "Wan B,C,T,H,W <-> PhaseLock B,T,C,H,W",
+    "vae_normalization": "(z - latents_mean) / latents_std",
+    "vae_posterior": "mode"
+  },
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step_video": "few_step.mp4",
+    "final_video": "final.mp4",
+    "latent_delta_trace": "latent_delta_trace.json"
+  },
+  "attention_exports": "not_enabled_in_smoke_generation; instrumentation follows only after generation/artifact validation"
+}
