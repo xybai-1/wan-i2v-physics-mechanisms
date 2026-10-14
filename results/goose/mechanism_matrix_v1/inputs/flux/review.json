@@ -1,0 +1,32 @@
+{
+  "review_date": "2026-10-14",
+  "generator": {
+    "repo_id": "black-forest-labs/FLUX.1-schnell",
+    "revision": "741f7c3ce8b383c54771c7003378a50191e9efe9",
+    "slurm_job_id": "4645"
+  },
+  "accepted": true,
+  "cases": {
+    "phygenbench_single_elastic_ball": {
+      "file": "prompt_025.png",
+      "sha256": "f912aa9f8b8d6046e25af9c23815c2b7784af9c49ca92a2248f746be50917151",
+      "size": [832, 480],
+      "accepted": true,
+      "evidence": "One intact ball is fully visible above a separate surface before contact; no bounce or impact outcome is shown."
+    },
+    "phygenbench_pair_egg_rock": {
+      "file": "prompt_130.png",
+      "sha256": "dffaa2347eedbeb26d7adc11615095c4d759c623bf53b49baf61419b4b7ce0a4",
+      "size": [832, 480],
+      "accepted": true,
+      "evidence": "One intact egg and one rock are fully visible and spatially separated before collision; no fracture outcome is shown."
+    },
+    "phygenbench_chain_fire_paper": {
+      "file": "prompt_140.png",
+      "sha256": "7e0b7cadd97324a04413f5d4922028eae91b0cf3dd91e5bc34cce89fd44c6978",
+      "size": [832, 480],
+      "accepted": true,
+      "evidence": "The burning paper ball and intact paper pile are separate; only the triggering ball burns and the target pile is not yet ignited."
+    }
+  }
+}

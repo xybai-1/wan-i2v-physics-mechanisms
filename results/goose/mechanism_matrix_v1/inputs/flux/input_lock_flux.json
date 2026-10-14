@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "study_id": "formation_preservation_matrix_v1",
+  "created_at": "2026-10-14T13:33:36.894708+00:00",
+  "files": {
+    "phyground_single_foam_slide": {
+      "relative_path": "phyground/mechanics_157.jpg",
+      "sha256": "0c175b0cb0d84188d04fbfdcf64be4c92c014d697783ee56910bb7479c5f8989",
+      "width": 832,
+      "height": 480,
+      "source_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/mechanics_157.jpg",
+      "generator": null
+    },
+    "phyground_pair_balls_collide": {
+      "relative_path": "phyground/0032_perspective-center_trimmed-balls-collide.jpg",
+      "sha256": "c2956d6e523b4ec30f47f4bf117707a89b25d490e9b53ab9e86ab9d325fe5766",
+      "width": 832,
+      "height": 448,
+      "source_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0032_perspective-center_trimmed-balls-collide.jpg",
+      "generator": null
+    },
+    "phyground_chain_domino_gap": {
+      "relative_path": "phyground/0050_perspective-center_trimmed-dominos-with-space.jpg",
+      "sha256": "12f9bb1a83d6dcfcae4bff8dbd4f3d96f7ea764db6f0224c41a76462d9cb63f5",
+      "width": 832,
+      "height": 448,
+      "source_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0050_perspective-center_trimmed-dominos-with-space.jpg",
+      "generator": null
+    },
+    "phygenbench_single_elastic_ball": {
+      "relative_path": "phygenbench_flux/prompt_025.png",
+      "sha256": "f912aa9f8b8d6046e25af9c23815c2b7784af9c49ca92a2248f746be50917151",
+      "width": 832,
+      "height": 480,
+      "source_url": null,
+      "generator": {
+        "model": "black-forest-labs/FLUX.1-schnell",
+        "seed": 4242,
+        "prompt": "Scientific demonstration, static locked-off camera. One intact vibrant elastic rubber ball is suspended just above a solid flat ground surface immediately before release. The ball and ground are fully visible. Pre-action scene, no motion blur, no bounce, no impact yet."
+      }
+    },
+    "phygenbench_pair_egg_rock": {
+      "relative_path": "phygenbench_flux/prompt_130.png",
+      "sha256": "dffaa2347eedbeb26d7adc11615095c4d759c623bf53b49baf61419b4b7ce0a4",
+      "width": 832,
+      "height": 480,
+      "source_url": null,
+      "generator": {
+        "model": "black-forest-labs/FLUX.1-schnell",
+        "seed": 4243,
+        "prompt": "Scientific demonstration, static locked-off camera. One intact fragile egg is in midair on the left and one rugged solid rock is on the right, immediately before contact. Both objects are fully visible and separated. Pre-action scene, no motion blur, no crack, no damage, no impact yet."
+      }
+    },
+    "phygenbench_chain_fire_paper": {
+      "relative_path": "phygenbench_flux/prompt_140.png",
+      "sha256": "7e0b7cadd97324a04413f5d4922028eae91b0cf3dd91e5bc34cce89fd44c6978",
+      "width": 832,
+      "height": 480,
+      "source_url": null,
+      "generator": {
+        "model": "black-forest-labs/FLUX.1-schnell",
+        "seed": 4244,
+        "prompt": "Scientific demonstration, static locked-off camera. A small burning paper ball is in midair on the left immediately before reaching a separate pile of dry paper on the right. Both are fully visible. Pre-action scene; the target pile is intact, dry, and not yet ignited."
+      }
+    },
+    "physics_iq_single_ball_free": {
+      "relative_path": "physics_iq_verified/0012_perspective-right_trimmed-ball-hits-nothing.jpg",
+      "sha256": "1b096a5b5b561acba1c1999ba49553a8b120a246687dfd260b44c7deebfcbddb",
+      "width": 3840,
+      "height": 2160,
+      "source_url": "https://storage.googleapis.com/physics-iq-benchmark/switch-frames/0012_switch-frames_anyFPS_perspective-right_trimmed-ball-hits-nothing.jpg",
+      "generator": null
+    },
+    "physics_iq_pair_balls_collide": {
+      "relative_path": "physics_iq_verified/0033_perspective-right_trimmed-balls-collide.jpg",
+      "sha256": "b316830bf120f3b39b90f1666582f5e5e0a464b890acc7d307937b23d75a620e",
+      "width": 3840,
+      "height": 2160,
+      "source_url": "https://storage.googleapis.com/physics-iq-benchmark/switch-frames/0033_switch-frames_anyFPS_perspective-right_trimmed-balls-collide.jpg",
+      "generator": null
+    },
+    "physics_iq_chain_weight_protects_duck": {
+      "relative_path": "physics_iq_verified/0198_perspective-right_trimmed-weight-protects-duck.jpg",
+      "sha256": "6af3b5361db0312c2095e333457a7980ac487679da56f03030fd105ef110372e",
+      "width": 3840,
+      "height": 2160,
+      "source_url": "https://storage.googleapis.com/physics-iq-benchmark/switch-frames/0198_switch-frames_anyFPS_perspective-right_trimmed-weight-protects-duck.jpg",
+      "generator": null
+    }
+  }
+}
