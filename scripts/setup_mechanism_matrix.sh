@@ -46,9 +46,9 @@ downloads = [
     for item in manifest["models"].values()
 ]
 downloads.append((
-    "black-forest-labs/FLUX.1-schnell",
-    manifest["source_revisions"]["flux_schnell"],
-    "FLUX.1-schnell",
+    "stabilityai/sdxl-turbo",
+    manifest["source_revisions"]["sdxl_turbo"],
+    "sdxl-turbo",
 ))
 for repo_id, revision, local_dir in downloads:
     destination = os.path.join(root, local_dir)
@@ -62,9 +62,9 @@ PY
 
 "${env_dir}/bin/python" - <<'PY'
 import torch
-from diffusers import CogVideoXImageToVideoPipeline, FluxPipeline, LTXImageToVideoPipeline, WanImageToVideoPipeline
+from diffusers import AutoPipelineForText2Image, CogVideoXImageToVideoPipeline, LTXImageToVideoPipeline, WanImageToVideoPipeline
 from phaselock.guidance import LatentDeltaGuidance
 print("torch", torch.__version__, "cuda-build", torch.version.cuda)
-print("pipelines", WanImageToVideoPipeline.__name__, CogVideoXImageToVideoPipeline.__name__, LTXImageToVideoPipeline.__name__, FluxPipeline.__name__)
+print("pipelines", WanImageToVideoPipeline.__name__, CogVideoXImageToVideoPipeline.__name__, LTXImageToVideoPipeline.__name__, AutoPipelineForText2Image.__name__)
 print("phaselock", LatentDeltaGuidance.__name__)
 PY

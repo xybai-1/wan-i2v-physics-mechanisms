@@ -20,7 +20,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("command", choices=("fetch-public", "generate-phygen", "lock"))
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--data-root", type=Path, required=True)
-    parser.add_argument("--flux-model", type=Path)
+    parser.add_argument("--image-model", type=Path)
     parser.add_argument("--lock-output", type=Path)
     return parser.parse_args()
 
@@ -58,11 +58,12 @@ def fetch_public(manifest: dict, data_root: Path) -> None:
         print(json.dumps({"case_id": case["case_id"], "path": str(destination), "size": [width, height]}))
 
 
-def generate_phygen(manifest: dict, data_root: Path, flux_model: Path) -> None:
-    from diffusers import FluxPipeline
+def generate_phygen(manifest: dict, data_root: Path, image_model: Path) -> None:
+    from diffusers import AutoPipelineForText2Image
 
-    pipe = FluxPipeline.from_pretrained(
-        str(flux_model), torch_dtype=torch.bfloat16, local_files_only=True, low_cpu_mem_usage=True
+    pipe = AutoPipelineForText2Image.from_pretrained(
+        str(image_model), torch_dtype=torch.float16, variant="fp16",
+        local_files_only=True, low_cpu_mem_usage=True
     )
     pipe.enable_model_cpu_offload()
     for case in manifest["cases"]:
@@ -77,9 +78,9 @@ def generate_phygen(manifest: dict, data_root: Path, flux_model: Path) -> None:
             continue
         image = pipe(
             prompt=specification["prompt"],
-            height=480,
-            width=832,
-            num_inference_steps=4,
+            height=512,
+            width=896,
+            num_inference_steps=1,
             guidance_scale=0.0,
             generator=torch.Generator(device="cuda").manual_seed(specification["seed"]),
         ).images[0]
@@ -120,9 +121,9 @@ def main() -> None:
     if args.command == "fetch-public":
         fetch_public(manifest, args.data_root)
     elif args.command == "generate-phygen":
-        if args.flux_model is None:
-            raise SystemExit("--flux-model is required for generate-phygen")
-        generate_phygen(manifest, args.data_root, args.flux_model)
+        if args.image_model is None:
+            raise SystemExit("--image-model is required for generate-phygen")
+        generate_phygen(manifest, args.data_root, args.image_model)
     else:
         if args.lock_output is None:
             raise SystemExit("--lock-output is required for lock")

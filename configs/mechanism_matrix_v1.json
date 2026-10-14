@@ -23,7 +23,7 @@
     "phygenbench_git": "6afd52f9060bb232cfab1668459010f13bb3de0d",
     "physics_iq_verified_git": "c2bca8a5bf452d24e177e9975641af1888eb1492",
     "diffusers": "0.35.2",
-    "flux_schnell": "741f7c3ce8b383c54771c7003378a50191e9efe9"
+    "sdxl_turbo": "71153311d3dbb46851df1931d3ca6e939de83304"
   },
   "models": {
     "wan21_i2v": {
@@ -109,7 +109,7 @@
       "physical_laws": ["elasticity", "gravity", "collision"],
       "first_image": "phygenbench/prompt_025.png",
       "first_image_generator": {
-        "model": "black-forest-labs/FLUX.1-schnell",
+        "model": "stabilityai/sdxl-turbo",
         "seed": 4242,
         "prompt": "Scientific demonstration, static locked-off camera. One intact vibrant elastic rubber ball is suspended just above a solid flat ground surface immediately before release. The ball and ground are fully visible. Pre-action scene, no motion blur, no bounce, no impact yet."
       }
@@ -123,7 +123,7 @@
       "physical_laws": ["hardness", "collision", "material fracture"],
       "first_image": "phygenbench/prompt_130.png",
       "first_image_generator": {
-        "model": "black-forest-labs/FLUX.1-schnell",
+        "model": "stabilityai/sdxl-turbo",
         "seed": 4243,
         "prompt": "Scientific demonstration, static locked-off camera. One intact fragile egg is in midair on the left and one rugged solid rock is on the right, immediately before contact. Both objects are fully visible and separated. Pre-action scene, no motion blur, no crack, no damage, no impact yet."
       }
@@ -137,7 +137,7 @@
       "physical_laws": ["combustibility", "heat transfer", "causal propagation"],
       "first_image": "phygenbench/prompt_140.png",
       "first_image_generator": {
-        "model": "black-forest-labs/FLUX.1-schnell",
+        "model": "stabilityai/sdxl-turbo",
         "seed": 4244,
         "prompt": "Scientific demonstration, static locked-off camera. A small burning paper ball is in midair on the left immediately before reaching a separate pile of dry paper on the right. Both are fully visible. Pre-action scene; the target pile is intact, dry, and not yet ignited."
       }

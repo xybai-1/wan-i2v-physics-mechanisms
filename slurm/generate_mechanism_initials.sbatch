@@ -27,7 +27,7 @@ export TOKENIZERS_PARALLELISM=false
 "${env_dir}/bin/python" "${repo_root}/scripts/prepare_mechanism_matrix.py" generate-phygen \
   --manifest "${manifest}" \
   --data-root "${data_root}" \
-  --flux-model "${state_root}/models/FLUX.1-schnell"
+  --image-model "${state_root}/models/sdxl-turbo"
 "${env_dir}/bin/python" "${repo_root}/scripts/prepare_mechanism_matrix.py" lock \
   --manifest "${manifest}" \
   --data-root "${data_root}" \
