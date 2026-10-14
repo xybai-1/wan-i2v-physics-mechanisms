@@ -3,6 +3,11 @@
 Mechanistic study of physical failures in image-to-video diffusion on a fixed
 Wan2.1-I2V backbone and a selected PhyGround subset.
 
+The frozen three-backbone follow-up matrix is documented in
+[`docs/mechanism_matrix_v1.md`](docs/mechanism_matrix_v1.md), with its registered
+cases and revisions in
+[`configs/mechanism_matrix_v1.json`](configs/mechanism_matrix_v1.json).
+
 ## Scientific question
 
 For a failed physical video, was the motion/event structure already incorrect

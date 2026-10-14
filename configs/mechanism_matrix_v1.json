@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "study_id": "formation_preservation_matrix_v1",
+  "selection_frozen": true,
+  "purpose": "Separate early event-formation failures from later preservation failures across three I2V backbones and three physics benchmarks.",
+  "protocol": {
+    "seeds": [42, 123, 777],
+    "arms": ["baseline", "phaselock"],
+    "decode_steps_one_based": [1, 2, 4, 8, 25, 50],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "source_revisions": {
+    "phaselock": "4ebb65ba1348e754723f08a190723cf82294db19",
+    "phyground_huggingface": "daafe35165db3c3f6832d92039c9ae8d6808274a",
+    "phygenbench_git": "6afd52f9060bb232cfab1668459010f13bb3de0d",
+    "physics_iq_verified_git": "c2bca8a5bf452d24e177e9975641af1888eb1492",
+    "diffusers": "0.35.2",
+    "flux_schnell": "741f7c3ce8b383c54771c7003378a50191e9efe9"
+  },
+  "models": {
+    "wan21_i2v": {
+      "label": "Wan2.1-I2V-14B",
+      "pipeline": "wan",
+      "repo_id": "Wan-AI/Wan2.1-I2V-14B-720P-Diffusers",
+      "revision": "eb849f76dfa246545b65774a9e25943ee69b3fa3",
+      "local_dir": "Wan2.1-I2V-14B-720P-Diffusers",
+      "height": 480,
+      "width": 832,
+      "num_frames": 81,
+      "fps": 16,
+      "guidance_scale": 5.0,
+      "transformer_calls_per_step": 2,
+      "cfg_layout": "separate_calls"
+    },
+    "cogvideox_i2v": {
+      "label": "CogVideoX-5B-I2V",
+      "pipeline": "cogvideox",
+      "repo_id": "THUDM/CogVideoX-5b-I2V",
+      "revision": "a6f0f4858a8395e7429d82493864ce92bf73af11",
+      "local_dir": "CogVideoX-5b-I2V",
+      "height": 480,
+      "width": 720,
+      "num_frames": 49,
+      "fps": 8,
+      "guidance_scale": 6.0,
+      "transformer_calls_per_step": 1,
+      "cfg_layout": "batched_uncond_cond"
+    },
+    "ltx_video_i2v": {
+      "label": "LTX-Video-0.9.5-I2V",
+      "pipeline": "ltx",
+      "repo_id": "Lightricks/LTX-Video-0.9.5",
+      "revision": "e58e28c39631af4d1468ee57a853764e11c1d37e",
+      "local_dir": "LTX-Video-0.9.5",
+      "height": 480,
+      "width": 704,
+      "num_frames": 121,
+      "fps": 30,
+      "guidance_scale": 3.0,
+      "transformer_calls_per_step": 1,
+      "cfg_layout": "batched_uncond_cond"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "phyground_single_foam_slide",
+      "benchmark": "PhyGround",
+      "complexity": "single_entity_motion",
+      "source_id": "mechanics_157",
+      "prompt": "A small, square piece of foam is placed on a slanted acrylic surface; it slides down, creating a soft impact sound upon landing.",
+      "physical_laws": ["gravity", "material", "collision"],
+      "first_image": "phyground/mechanics_157.jpg",
+      "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/mechanics_157.jpg"
+    },
+    {
+      "case_id": "phyground_pair_balls_collide",
+      "benchmark": "PhyGround",
+      "complexity": "two_entity_contact",
+      "source_id": "0032_perspective-center_trimmed-balls-collide",
+      "prompt": "A light-colored wooden tabletop with two pipes at the edges. A blue and yellow tennis ball roll out of the pipes and towards each other. The two balls collide and bounce off each other. Static shot with no camera movement.",
+      "physical_laws": ["momentum", "collision", "impenetrability", "inertia"],
+      "first_image": "phyground/0032_perspective-center_trimmed-balls-collide.jpg",
+      "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0032_perspective-center_trimmed-balls-collide.jpg"
+    },
+    {
+      "case_id": "phyground_chain_domino_gap",
+      "benchmark": "PhyGround",
+      "complexity": "multi_stage_causal_chain",
+      "source_id": "0050_perspective-center_trimmed-dominos-with-space",
+      "prompt": "Two rows of alternating black and white dominoes are set up on a wooden table with a gap between the two rows. A wooden stick attached to a rotating platform rotates clockwise and knocks the first domino in the first row. The dominoes in the first row topple over one by one, bridging the gap and causing the second row to also topple. Static shot with no camera movement.",
+      "physical_laws": ["collision", "momentum", "impenetrability", "gravity"],
+      "first_image": "phyground/0050_perspective-center_trimmed-dominos-with-space.jpg",
+      "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0050_perspective-center_trimmed-dominos-with-space.jpg"
+    },
+    {
+      "case_id": "phygenbench_single_elastic_ball",
+      "benchmark": "PhyGenBench",
+      "complexity": "single_entity_motion",
+      "source_id": "prompt_index_25",
+      "prompt": "A vibrant, elastic rubber ball is thrown forcefully towards the ground, capturing its dynamic interaction with the surface upon impact.",
+      "physical_laws": ["elasticity", "gravity", "collision"],
+      "first_image": "phygenbench/prompt_025.png",
+      "first_image_generator": {
+        "model": "black-forest-labs/FLUX.1-schnell",
+        "seed": 4242,
+        "prompt": "Scientific demonstration, static locked-off camera. One intact vibrant elastic rubber ball is suspended just above a solid flat ground surface immediately before release. The ball and ground are fully visible. Pre-action scene, no motion blur, no bounce, no impact yet."
+      }
+    },
+    {
+      "case_id": "phygenbench_pair_egg_rock",
+      "benchmark": "PhyGenBench",
+      "complexity": "two_entity_contact",
+      "source_id": "prompt_index_130",
+      "prompt": "A delicate, fragile egg is hurled with significant force towards a rugged, solid rock surface, where it collides upon impact",
+      "physical_laws": ["hardness", "collision", "material fracture"],
+      "first_image": "phygenbench/prompt_130.png",
+      "first_image_generator": {
+        "model": "black-forest-labs/FLUX.1-schnell",
+        "seed": 4243,
+        "prompt": "Scientific demonstration, static locked-off camera. One intact fragile egg is in midair on the left and one rugged solid rock is on the right, immediately before contact. Both objects are fully visible and separated. Pre-action scene, no motion blur, no crack, no damage, no impact yet."
+      }
+    },
+    {
+      "case_id": "phygenbench_chain_fire_paper",
+      "benchmark": "PhyGenBench",
+      "complexity": "multi_stage_causal_chain",
+      "source_id": "prompt_index_140",
+      "prompt": "A small burning ball of paper was thrown into a pile of dry paper.",
+      "physical_laws": ["combustibility", "heat transfer", "causal propagation"],
+      "first_image": "phygenbench/prompt_140.png",
+      "first_image_generator": {
+        "model": "black-forest-labs/FLUX.1-schnell",
+        "seed": 4244,
+        "prompt": "Scientific demonstration, static locked-off camera. A small burning paper ball is in midair on the left immediately before reaching a separate pile of dry paper on the right. Both are fully visible. Pre-action scene; the target pile is intact, dry, and not yet ignited."
+      }
+    },
+    {
+      "case_id": "physics_iq_single_ball_free",
+      "benchmark": "Physics-IQ Verified",
+      "complexity": "single_entity_motion",
+      "source_id": "0012_perspective-right_trimmed-ball-hits-nothing",
+      "prompt": "Static locked-off single-shot with fixed frame throughout filmed with constant framerate in real-time. The scene shows a realistic scientific demonstration. The scene only contains the described setup and actions. A light-colored wooden coffee table with a few small objects on it, including a brown tennis ball and a smaller red ball. The orange tennis ball rolls straight out of the black pipe over the entire table towards the right side.",
+      "physical_laws": ["inertia", "gravity", "rolling motion"],
+      "first_image": "physics_iq_verified/0012_perspective-right_trimmed-ball-hits-nothing.jpg",
+      "first_image_url": "https://storage.googleapis.com/physics-iq-benchmark/switch-frames/0012_switch-frames_anyFPS_perspective-right_trimmed-ball-hits-nothing.jpg"
+    },
+    {
+      "case_id": "physics_iq_pair_balls_collide",
+      "benchmark": "Physics-IQ Verified",
+      "complexity": "two_entity_contact",
+      "source_id": "0033_perspective-right_trimmed-balls-collide",
+      "prompt": "Static locked-off single-shot with fixed frame throughout filmed with constant framerate in real-time. The scene shows a realistic scientific demonstration. The scene only contains the described setup and actions. A light-colored wooden tabletop with two pipes at the edges. The blue and the yellow tennis ball roll out of the pipes and collide with the same speed.",
+      "physical_laws": ["momentum", "collision", "impenetrability"],
+      "first_image": "physics_iq_verified/0033_perspective-right_trimmed-balls-collide.jpg",
+      "first_image_url": "https://storage.googleapis.com/physics-iq-benchmark/switch-frames/0033_switch-frames_anyFPS_perspective-right_trimmed-balls-collide.jpg"
+    },
+    {
+      "case_id": "physics_iq_chain_weight_protects_duck",
+      "benchmark": "Physics-IQ Verified",
+      "complexity": "multi_stage_causal_chain",
+      "source_id": "0198_perspective-right_trimmed-weight-protects-duck",
+      "prompt": "Static locked-off single-shot with fixed frame throughout filmed with constant framerate in real-time. The scene shows a realistic scientific demonstration. The scene only contains the described setup and actions. The 30lb kettlebell and the yellow rubber duck sit on a light-colored wooden table. The black pipe is on the left side of the table and points to the right. The grey tennis ball rolls swiftly straight out of the black pipe from the left side and hits the 30lb kettlebell.",
+      "physical_laws": ["momentum", "collision", "shielding", "multi-object causality"],
+      "first_image": "physics_iq_verified/0198_perspective-right_trimmed-weight-protects-duck.jpg",
+      "first_image_url": "https://storage.googleapis.com/physics-iq-benchmark/switch-frames/0198_switch-frames_anyFPS_perspective-right_trimmed-weight-protects-duck.jpg"
+    }
+  ]
+}
