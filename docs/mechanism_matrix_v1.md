@@ -24,14 +24,14 @@ they are not counted as six additional experiments.
 
 Each case has one conditioning image shared by every backbone, seed, and arm.
 PhyGround and Physics-IQ Verified use their official public first/switch frames.
-PhyGenBench is T2V-only, so three pre-action frames are generated once with a
-pinned SDXL-Turbo revision and frozen seeds. The PhaseLock paper used FLUX-schnell
-or Gemini for this benchmark adaptation; SDXL-Turbo is a disclosed deployment
-substitution because the official FLUX repository is access-gated on GOOSE. It
-does not affect the matched arm comparison because every backbone, seed, and arm
-uses the exact same locked image. The actual generation prompt is the original
-benchmark prompt. The pre-action image prompt is never passed to a video model.
-`input_lock.json` records every conditioning image's SHA-256.
+PhyGenBench is T2V-only, so three pre-action frames are generated once with the
+pinned FLUX.1-schnell revision and frozen seeds, matching the image-generator
+family used by PhaseLock. Every backbone, seed, and arm uses the exact same
+locked image. The actual generation prompt is the original benchmark prompt.
+The pre-action image prompt is never passed to a video model.
+`input_lock_flux.json` records every conditioning image's SHA-256. The earlier
+SDXL-Turbo pilot inputs and `input_lock.json` are retained as a separate,
+reproducible deployment artifact and are not overwritten.
 
 This design tests matched I2V mechanisms; it is not an official cross-model
 ranking because the backbones have different native frame counts, frame rates,

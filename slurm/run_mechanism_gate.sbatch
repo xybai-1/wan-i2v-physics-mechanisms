@@ -44,6 +44,6 @@ for model_key in "${model_keys[@]}"; do
     --models-root "${state_root}/models" \
     --phaselock-code "${state_root}/upstream/phaselock/code" \
     --data-root "${state_root}/data/mechanism-matrix-v1" \
-    --input-lock "${state_root}/data/mechanism-matrix-v1/input_lock.json" \
+    --input-lock "${state_root}/data/mechanism-matrix-v1/input_lock_flux.json" \
     --output-root "${output_root}"
 done

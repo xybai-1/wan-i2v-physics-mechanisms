@@ -59,10 +59,10 @@ def fetch_public(manifest: dict, data_root: Path) -> None:
 
 
 def generate_phygen(manifest: dict, data_root: Path, image_model: Path) -> None:
-    from diffusers import AutoPipelineForText2Image
+    from diffusers import FluxPipeline
 
-    pipe = AutoPipelineForText2Image.from_pretrained(
-        str(image_model), torch_dtype=torch.float16, variant="fp16",
+    pipe = FluxPipeline.from_pretrained(
+        str(image_model), torch_dtype=torch.bfloat16,
         local_files_only=True, low_cpu_mem_usage=True
     )
     pipe.enable_model_cpu_offload()
@@ -78,9 +78,9 @@ def generate_phygen(manifest: dict, data_root: Path, image_model: Path) -> None:
             continue
         image = pipe(
             prompt=specification["prompt"],
-            height=512,
-            width=896,
-            num_inference_steps=1,
+            height=480,
+            width=832,
+            num_inference_steps=4,
             guidance_scale=0.0,
             generator=torch.Generator(device="cuda").manual_seed(specification["seed"]),
         ).images[0]
