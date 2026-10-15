@@ -31,35 +31,66 @@ def _safe_name(value: str) -> str:
 def locate_text_spans(
     tokenizer, prompt: str, targets: dict[str, str], max_length: int
 ) -> tuple[dict[str, list[int]], dict[str, Any]]:
-    encoded = tokenizer(
-        prompt,
-        padding="max_length",
-        max_length=max_length,
-        truncation=True,
-        return_offsets_mapping=True,
-        add_special_tokens=True,
-    )
-    offsets = encoded["offset_mapping"]
-    lower_prompt = prompt.lower()
+    common = {
+        "padding": "max_length",
+        "max_length": max_length,
+        "truncation": True,
+        "add_special_tokens": True,
+    }
     positions: dict[str, list[int]] = {}
-    for label, phrase in targets.items():
-        start = lower_prompt.find(phrase.lower())
-        if start < 0:
-            raise ValueError(f"attention target {phrase!r} not found in prompt")
-        end = start + len(phrase)
-        hits = [
-            index
-            for index, (left, right) in enumerate(offsets)
-            if right > left and left < end and right > start
-        ]
-        if not hits:
-            raise ValueError(f"attention target {phrase!r} has no tokenizer overlap")
-        positions[label] = hits
+    location_method = "character_offsets"
+    try:
+        encoded = tokenizer(prompt, return_offsets_mapping=True, **common)
+        offsets = encoded["offset_mapping"]
+        lower_prompt = prompt.lower()
+        for label, phrase in targets.items():
+            start = lower_prompt.find(phrase.lower())
+            if start < 0:
+                raise ValueError(f"attention target {phrase!r} not found in prompt")
+            end = start + len(phrase)
+            hits = [
+                index
+                for index, (left, right) in enumerate(offsets)
+                if right > left and left < end and right > start
+            ]
+            if not hits:
+                raise ValueError(f"attention target {phrase!r} has no tokenizer overlap")
+            positions[label] = hits
+    except (NotImplementedError, TypeError):
+        # CogVideoX and some LTX releases ship a Python SentencePiece tokenizer,
+        # which cannot return character offsets.  Exact token-id subsequences
+        # retain the same model-facing indexing without replacing the tokenizer.
+        location_method = "token_id_subsequence"
+        encoded = tokenizer(prompt, **common)
+        input_ids = list(encoded["input_ids"])
+        for label, phrase in targets.items():
+            if phrase.lower() not in prompt.lower():
+                raise ValueError(f"attention target {phrase!r} not found in prompt")
+            candidates = []
+            for text in (phrase, f" {phrase}"):
+                ids = tokenizer(text, add_special_tokens=False)["input_ids"]
+                if ids and ids not in candidates:
+                    candidates.append(list(ids))
+            hits = None
+            for candidate in candidates:
+                for start in range(len(input_ids) - len(candidate) + 1):
+                    if input_ids[start : start + len(candidate)] == candidate:
+                        hits = list(range(start, start + len(candidate)))
+                        break
+                if hits is not None:
+                    break
+            if hits is None:
+                raise ValueError(
+                    f"attention target {phrase!r} token sequence not found; "
+                    f"candidates={candidates}"
+                )
+            positions[label] = hits
     return positions, {
         "prompt": prompt,
         "targets": targets,
         "positions": positions,
         "max_length": max_length,
+        "location_method": location_method,
         "tokens": tokenizer.convert_ids_to_tokens(encoded["input_ids"]),
     }
 
