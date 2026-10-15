@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Read-only entity and temporal attention diagnostics for three I2V backbones.
+"""Entity and temporal attention diagnostics for three I2V backbones.
 
 The wrappers always delegate generation to the already-installed Diffusers
 processor and calculate diagnostics from a second set of Q/K projections.  No
-tensor on the model's generation path is modified.  Entity maps are scaled QK
-affinities (not probabilities); sparse self-attention matrices are exact
-head-mean probability mass for a small set of entity-guided query/key tokens.
+tensor on the model's generation path is modified unless an explicit Wan-only
+``intervention_plan`` is supplied. Entity maps are scaled QK affinities (not
+probabilities); sparse self-attention matrices are exact head-mean probability
+mass for a small set of entity-guided query/key tokens.
 """
 
 from __future__ import annotations
@@ -126,6 +127,7 @@ class CausalAttentionProbe:
         support_topk_per_frame: int,
         query_chunk_size: int,
         cross_query_chunk_size: int,
+        intervention_plan: dict[str, Any] | None = None,
     ) -> None:
         self.transformer = transformer
         self.model_kind = model_kind
@@ -141,12 +143,14 @@ class CausalAttentionProbe:
         self.support_topk_per_frame = support_topk_per_frame
         self.query_chunk_size = query_chunk_size
         self.cross_query_chunk_size = cross_query_chunk_size
+        self.intervention_plan = intervention_plan
         self.forward_index = -1
         self.step_index = -1
         self.timestep = float("nan")
         self.entity_maps: dict[tuple[int, int, str], torch.Tensor] = {}
         self.connectivity: dict[tuple[int, int, str, str], torch.Tensor] = {}
         self.events: list[dict[str, Any]] = []
+        self.intervention_events: list[dict[str, Any]] = []
         self._handle = None
         self._originals: list[tuple[Any, Any]] = []
 
@@ -171,6 +175,118 @@ class CausalAttentionProbe:
         else:
             raise ValueError(f"unsupported model kind: {self.model_kind}")
         return self
+
+    def _intervention_active(self, layer: int) -> bool:
+        plan = self.intervention_plan
+        return bool(
+            plan
+            and self.should_collect()
+            and self.step_index in set(plan["steps_zero_based"])
+            and layer in set(plan["self_layers"])
+        )
+
+    def route_wan_features(self, layer: int, output: torch.Tensor) -> torch.Tensor:
+        """Transport source features into receiver supports under equal-mass controls.
+
+        Information in attention flows from key/value positions into query
+        outputs. This intervention therefore edits receiver output tokens
+        directly, rather than treating a source-query/target-key diagnostic as
+        proof of source-to-target causal flow.
+        """
+        if not self._intervention_active(layer):
+            return output
+        if self.model_kind != "wan":
+            raise RuntimeError("feature routing intervention is currently Wan-only")
+        plan = self.intervention_plan
+        assert plan is not None
+        source_layer = self.self_to_source[layer]
+        labels = {
+            label
+            for edge in plan["edges"]
+            for label in (edge["source"], edge["receiver"])
+        }
+        missing = [
+            label
+            for label in sorted(labels)
+            if (self.step_index, source_layer, label) not in self.entity_maps
+        ]
+        if missing:
+            raise RuntimeError(
+                f"intervention layer {layer} requires entity maps from layer "
+                f"{source_layer}; missing {missing}"
+            )
+
+        supports = {
+            label: self._topk_by_frame(
+                self.entity_maps[(self.step_index, source_layer, label)],
+                int(plan["support_topk_per_frame"]),
+            )
+            for label in labels
+        }
+        mode = plan["mode"]
+        lag = int(plan["temporal_lag_frames"])
+        frames = self.grid_thw[0]
+        receiver_frames = range(lag, frames - lag)
+        if mode == "forward":
+            frame_pairs = [
+                (receiver_frame - lag, receiver_frame)
+                for receiver_frame in receiver_frames
+            ]
+        elif mode == "reverse_time":
+            frame_pairs = [
+                (receiver_frame + lag, receiver_frame)
+                for receiver_frame in receiver_frames
+            ]
+        elif mode == "same_time":
+            frame_pairs = [
+                (receiver_frame, receiver_frame)
+                for receiver_frame in receiver_frames
+            ]
+        else:
+            raise ValueError(f"unknown feature-routing mode: {mode}")
+
+        modified = output.clone()
+        conditional = self.conditional(modified)
+        reference = self.conditional(output)
+        layer_count = max(1, len(plan["self_layers"]))
+        edge_count = max(1, len(plan["edges"]))
+        alpha = float(plan["total_strength"]) / (layer_count * edge_count)
+        squared_delta = 0.0
+        edited_tokens = 0
+        for edge in plan["edges"]:
+            source_label = edge["source"]
+            receiver_label = edge["receiver"]
+            for source_frame, receiver_frame in frame_pairs:
+                source_indices = supports[source_label][source_frame].to(output.device)
+                receiver_indices = supports[receiver_label][receiver_frame].to(
+                    output.device
+                )
+                source_feature = reference.index_select(1, source_indices).mean(
+                    dim=1, keepdim=True
+                )
+                receiver_feature = conditional.index_select(1, receiver_indices)
+                update = (source_feature - receiver_feature) * alpha
+                conditional[:, receiver_indices] = receiver_feature + update
+                squared_delta += float(update.float().square().mean().cpu())
+                edited_tokens += int(receiver_indices.numel())
+        reference_rms = float(reference.float().square().mean().sqrt().cpu())
+        delta_rms = math.sqrt(squared_delta / max(1, len(plan["edges"]) * len(frame_pairs)))
+        self.intervention_events.append(
+            {
+                "step": self.step_index,
+                "layer": layer,
+                "source_entity_layer": source_layer,
+                "mode": mode,
+                "alpha_per_layer_edge": alpha,
+                "edge_count": len(plan["edges"]),
+                "frame_pair_count": len(frame_pairs),
+                "edited_token_visits": edited_tokens,
+                "delta_rms": delta_rms,
+                "reference_rms": reference_rms,
+                "delta_to_reference_rms": delta_rms / max(reference_rms, 1e-12),
+            }
+        )
+        return modified
 
     def _wrap(self, attention, layer: int, kind: str, wrapper_type) -> None:
         original = attention.get_processor()
@@ -395,7 +511,9 @@ class CausalAttentionProbe:
                 "self": "Exact head-mean self-attention probability mass from source-entity query supports to target-entity key supports, indexed by query/key frame.",
                 "caveat": "Attention is correlational localization. Causal claims require a later intervention experiment.",
             },
-            "generation_path_modified": False,
+            "generation_path_modified": self.intervention_plan is not None,
+            "intervention_plan": self.intervention_plan,
+            "intervention_events": self.intervention_events,
         }
         (output_dir / "attention_metadata.json").write_text(
             json.dumps(metadata, indent=2) + "\n", encoding="utf-8"
@@ -448,6 +566,7 @@ class WanProbeProcessor(_BaseProbeProcessor):
             self.state.collect_sparse_self(
                 self.layer, query, key, attention_mask=attention_mask
             )
+            output = self.state.route_wan_features(self.layer, output)
         return output
 
 

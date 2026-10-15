@@ -194,9 +194,9 @@ def main() -> None:
             "entity_selectivity_z": "(spatial p95 - spatial mean) / spatial std of text-token QK affinity; higher means a more spatially selective affinity map, not verified object-mask localization.",
             "entity_temporal_span_z": "range of frame-mean token affinity divided by full-map std.",
             "entity_late_minus_early_z": "late-third minus early-third frame-mean affinity divided by full-map std.",
-            "directed_future_fraction": "source-entity query attention mass to target-entity keys at later frames.",
-            "directed_past_fraction": "source-entity query attention mass to target-entity keys at earlier frames.",
-            "directed_forward_bias": "(future - past) / (future + past); positive means later-target preference.",
+            "directed_future_fraction": "source-labelled query attention mass to target-labelled keys at later frames; this is a lookup orientation, not source-to-target information flow.",
+            "directed_past_fraction": "source-labelled query attention mass to target-labelled keys at earlier frames; key/value information flows into the query output.",
+            "directed_forward_bias": "(future - past) / (future + past); positive means later-key preference, not forward causal propagation.",
         },
         "model_step": model_step,
         "phaselock_minus_baseline_by_model_step": delta_model_step,
@@ -253,7 +253,7 @@ def main() -> None:
         "",
         "## Interpretation boundary",
         "",
-        "Entity QK maps are token-affinity maps without ground-truth object masks. Directed matrices measure source-query to target-key temporal mass. Neither establishes that a pathway causes the rendered physical outcome; causal claims require intervention.",
+        "Entity QK maps are token-affinity maps without ground-truth object masks. Directed matrices measure source-labelled query to target-labelled key temporal mass; key/value information flows into the query, so this orientation is not a causal-flow direction. Neither establishes that a pathway causes the rendered physical outcome; causal claims require intervention.",
         "",
     ]
     (out_dir / "AGGREGATES.md").write_text("\n".join(markdown), encoding="utf-8")

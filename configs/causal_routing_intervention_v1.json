@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "study_id": "causal_routing_intervention_v1",
+  "parent_study_id": "causal_attention_diagnostics_v1",
+  "parent_revision": "6c1af8a3068b67ca20c61bf4b8ba2e8f8afb6e12",
+  "purpose": "Test whether temporally directed, entity-localized feature transport has causal leverage over physical event formation without training.",
+  "scope": {
+    "model_key": "wan21_i2v",
+    "seed": 42,
+    "variants": ["forward", "reverse_time", "same_time"],
+    "cases": [
+      "physics_iq_single_ball_free",
+      "phyground_pair_balls_collide",
+      "phyground_chain_domino_gap",
+      "phygenbench_chain_fire_paper"
+    ]
+  },
+  "protocol": {
+    "steps_zero_based": [0, 1, 2, 3, 4, 5, 6, 7],
+    "entity_map_layers": [0, 1, 32, 37],
+    "self_source_layer_pairs": [[1, 0], [2, 1], [33, 32], [38, 37]],
+    "self_layers": [1, 2, 33, 38],
+    "query_topk_per_frame": 2,
+    "support_topk_per_frame": 8,
+    "query_chunk_size": 2,
+    "cross_query_chunk_size": 256,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "strength_distribution": "total_strength divided equally across selected layers and semantic edges",
+    "route_operator": "receiver <- receiver + alpha * (mean(source_support) - receiver)",
+    "branch": "conditional CFG branch only",
+    "raw_latents_saved": false
+  },
+  "case_edges": {
+    "physics_iq_single_ball_free": [
+      {"source": "moving_ball", "receiver": "table"}
+    ],
+    "phyground_pair_balls_collide": [
+      {"source": "blue_ball", "receiver": "yellow_ball"},
+      {"source": "yellow_ball", "receiver": "blue_ball"}
+    ],
+    "phyground_chain_domino_gap": [
+      {"source": "wooden_stick", "receiver": "first_row"},
+      {"source": "first_row", "receiver": "second_row"}
+    ],
+    "phygenbench_chain_fire_paper": [
+      {"source": "burning_ball", "receiver": "paper_pile"}
+    ]
+  },
+  "controls": {
+    "forward": "source feature at frame t is transported to receiver support at frame t+1",
+    "reverse_time": "same semantic edge and mass, but source feature at frame t+1 is transported to receiver support at frame t",
+    "same_time": "same semantic edge and mass, but source and receiver are taken from the same frame"
+  },
+  "interpretation": "A forward-specific behavioral change relative to equal-mass controls supports causal leverage of the routed pathway. It does not by itself establish a general physical law representation."
+}

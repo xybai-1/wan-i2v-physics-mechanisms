@@ -15,8 +15,9 @@ future-target mass from 0.248 to 0.225. This is consistent with over-locking:
 identity/appearance may be anchored while cross-time interaction is suppressed.
 In LTX, PhaseLock instead increases the temporal span of entity affinity by
 +0.554 standardized units at step 8 and preserves the early latent prior much
-more successfully, but the directed pathway becomes more past-biased rather
-than more forward-causal. CogVideoX changes are smaller and distributed.
+more successfully, but the source-query/target-key lookup becomes more
+past-key-biased rather than showing a new causal route. CogVideoX changes are
+smaller and distributed.
 
 Together with the parent 162-video matrix, this refines the earlier conclusion:
 hard contact and chain cases are still formation failures, but not because the
@@ -47,8 +48,10 @@ decodable. Jobs 4670 and 4671 completed with exit `0:0` in 02:27:30 and
 
 `Entity selectivity` is `(spatial p95 - mean) / spatial std`; it measures
 contrast in a token-affinity map, not overlap with a ground-truth object mask.
-`Future mass` is attention from a source-entity query to target-entity keys at
-later frames. Positive deltas below mean PhaseLock minus baseline.
+`Future mass` is attention from a source-labelled query to target-labelled keys
+at later frames. This is a query-key lookup orientation, not source-to-target
+information flow: key/value information flows into the query output. Positive
+deltas below mean PhaseLock minus baseline.
 
 | Backbone | Step-8 entity selectivity delta | Step-8 temporal-span delta | Step-8 future-mass delta | Step-8 forward-bias delta |
 | --- | ---: | ---: | ---: | ---: |
@@ -143,10 +146,11 @@ should be the denoising trajectory/solver rather than attention routing.
 
 ## Interpretation boundary
 
-Attention is correlational localization. These measurements establish where
-entity and temporal signals exist and how PhaseLock redistributes them; they do
-not prove that any map causes the rendered outcome. Activation patching or a
-controlled attention intervention is required for that claim.
+Attention is correlational localization. In particular, query-to-key arrows do
+not indicate the direction of feature transport. These measurements establish
+where entity and temporal signals exist and how PhaseLock redistributes them;
+they do not prove that any map causes the rendered outcome. Activation patching
+or a controlled attention intervention is required for that claim.
 
 ## Files
 
