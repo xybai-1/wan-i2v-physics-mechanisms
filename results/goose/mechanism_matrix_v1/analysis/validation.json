@@ -1,0 +1,102 @@
+{
+  "valid": true,
+  "expected_run_count": 162,
+  "observed_run_count": 162,
+  "expected_pair_count": 81,
+  "identical_few_step_prior_pairs": 81,
+  "conditioning_cases_with_one_hash": 9,
+  "study_revisions": {
+    "d4c515bd88ab9cef397e664bcc794f49685fc4ed": 162
+  },
+  "slurm_job_ids": {
+    "4649": 104,
+    "4647": 4,
+    "4648": 52,
+    "4646": 2
+  },
+  "video_summaries": [
+    {
+      "model_key": "cogvideox_i2v",
+      "video": "few_step.mp4",
+      "frames": 49,
+      "width": 720,
+      "height": 480,
+      "count": 54
+    },
+    {
+      "model_key": "cogvideox_i2v",
+      "video": "final.mp4",
+      "frames": 49,
+      "width": 720,
+      "height": 480,
+      "count": 54
+    },
+    {
+      "model_key": "ltx_video_i2v",
+      "video": "few_step.mp4",
+      "frames": 121,
+      "width": 704,
+      "height": 480,
+      "count": 54
+    },
+    {
+      "model_key": "ltx_video_i2v",
+      "video": "final.mp4",
+      "frames": 121,
+      "width": 704,
+      "height": 480,
+      "count": 54
+    },
+    {
+      "model_key": "wan21_i2v",
+      "video": "few_step.mp4",
+      "frames": 81,
+      "width": 832,
+      "height": 480,
+      "count": 54
+    },
+    {
+      "model_key": "wan21_i2v",
+      "video": "final.mp4",
+      "frames": 81,
+      "width": 832,
+      "height": 480,
+      "count": 54
+    }
+  ],
+  "attention_record_counts": [
+    {
+      "model_key": "cogvideox_i2v",
+      "records_per_run": 4200,
+      "run_count": 54
+    },
+    {
+      "model_key": "ltx_video_i2v",
+      "records_per_run": 5600,
+      "run_count": 54
+    },
+    {
+      "model_key": "wan21_i2v",
+      "records_per_run": 8000,
+      "run_count": 54
+    }
+  ],
+  "attention_module_counts": [
+    {
+      "model_key": "cogvideox_i2v",
+      "modules_per_run": 42,
+      "run_count": 54
+    },
+    {
+      "model_key": "ltx_video_i2v",
+      "modules_per_run": 56,
+      "run_count": 54
+    },
+    {
+      "model_key": "wan21_i2v",
+      "modules_per_run": 80,
+      "run_count": 54
+    }
+  ],
+  "errors": []
+}

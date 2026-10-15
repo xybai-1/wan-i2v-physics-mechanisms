@@ -1,0 +1,602 @@
+[
+  {
+    "step_one_based": 1,
+    "timestep": 1000.0,
+    "guidance_strength": 0.05,
+    "cosine_to_two_step_prior_before_guidance": 0.14452067017555237,
+    "cosine_to_two_step_prior_after_guidance": 0.16289575397968292,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 2,
+    "timestep": 980.0,
+    "guidance_strength": 0.048,
+    "cosine_to_two_step_prior_before_guidance": 0.16434432566165924,
+    "cosine_to_two_step_prior_after_guidance": 0.183114692568779,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 3,
+    "timestep": 960.0,
+    "guidance_strength": 0.046000000000000006,
+    "cosine_to_two_step_prior_before_guidance": 0.18496572971343994,
+    "cosine_to_two_step_prior_after_guidance": 0.2039957046508789,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 4,
+    "timestep": 940.0,
+    "guidance_strength": 0.044000000000000004,
+    "cosine_to_two_step_prior_before_guidance": 0.20618975162506104,
+    "cosine_to_two_step_prior_after_guidance": 0.2253386676311493,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 5,
+    "timestep": 920.0,
+    "guidance_strength": 0.042,
+    "cosine_to_two_step_prior_before_guidance": 0.22788795828819275,
+    "cosine_to_two_step_prior_after_guidance": 0.24701672792434692,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 6,
+    "timestep": 900.0,
+    "guidance_strength": 0.04000000000000001,
+    "cosine_to_two_step_prior_before_guidance": 0.2499021738767624,
+    "cosine_to_two_step_prior_after_guidance": 0.2688714265823364,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 7,
+    "timestep": 880.0,
+    "guidance_strength": 0.038000000000000006,
+    "cosine_to_two_step_prior_before_guidance": 0.2721019387245178,
+    "cosine_to_two_step_prior_after_guidance": 0.2907770872116089,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 8,
+    "timestep": 860.0,
+    "guidance_strength": 0.036,
+    "cosine_to_two_step_prior_before_guidance": 0.2943471670150757,
+    "cosine_to_two_step_prior_after_guidance": 0.31260156631469727,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 9,
+    "timestep": 840.0,
+    "guidance_strength": 0.033999999999999996,
+    "cosine_to_two_step_prior_before_guidance": 0.316522479057312,
+    "cosine_to_two_step_prior_after_guidance": 0.33423638343811035,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 10,
+    "timestep": 820.0,
+    "guidance_strength": 0.032,
+    "cosine_to_two_step_prior_before_guidance": 0.33850112557411194,
+    "cosine_to_two_step_prior_after_guidance": 0.3555658161640167,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 11,
+    "timestep": 800.0,
+    "guidance_strength": 0.03,
+    "cosine_to_two_step_prior_before_guidance": 0.36020389199256897,
+    "cosine_to_two_step_prior_after_guidance": 0.37652283906936646,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 12,
+    "timestep": 780.0,
+    "guidance_strength": 0.028000000000000004,
+    "cosine_to_two_step_prior_before_guidance": 0.3815924823284149,
+    "cosine_to_two_step_prior_after_guidance": 0.3970795273780823,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 13,
+    "timestep": 760.0,
+    "guidance_strength": 0.026000000000000002,
+    "cosine_to_two_step_prior_before_guidance": 0.40254664421081543,
+    "cosine_to_two_step_prior_after_guidance": 0.4171280562877655,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 14,
+    "timestep": 740.0,
+    "guidance_strength": 0.024,
+    "cosine_to_two_step_prior_before_guidance": 0.4229915142059326,
+    "cosine_to_two_step_prior_after_guidance": 0.4366039037704468,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 15,
+    "timestep": 720.0,
+    "guidance_strength": 0.022,
+    "cosine_to_two_step_prior_before_guidance": 0.44290703535079956,
+    "cosine_to_two_step_prior_after_guidance": 0.4554983377456665,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 16,
+    "timestep": 700.0,
+    "guidance_strength": 0.020000000000000004,
+    "cosine_to_two_step_prior_before_guidance": 0.4622301459312439,
+    "cosine_to_two_step_prior_after_guidance": 0.473758727312088,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 17,
+    "timestep": 680.0,
+    "guidance_strength": 0.018,
+    "cosine_to_two_step_prior_before_guidance": 0.4809052050113678,
+    "cosine_to_two_step_prior_after_guidance": 0.49133849143981934,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 18,
+    "timestep": 660.0,
+    "guidance_strength": 0.015999999999999997,
+    "cosine_to_two_step_prior_before_guidance": 0.4989309310913086,
+    "cosine_to_two_step_prior_after_guidance": 0.5082442760467529,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 19,
+    "timestep": 640.0,
+    "guidance_strength": 0.014000000000000002,
+    "cosine_to_two_step_prior_before_guidance": 0.516189694404602,
+    "cosine_to_two_step_prior_after_guidance": 0.5243640542030334,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 20,
+    "timestep": 620.0,
+    "guidance_strength": 0.012,
+    "cosine_to_two_step_prior_before_guidance": 0.5327486991882324,
+    "cosine_to_two_step_prior_after_guidance": 0.539772093296051,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 21,
+    "timestep": 600.0,
+    "guidance_strength": 0.009999999999999998,
+    "cosine_to_two_step_prior_before_guidance": 0.548575758934021,
+    "cosine_to_two_step_prior_after_guidance": 0.5544396638870239,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 22,
+    "timestep": 580.0,
+    "guidance_strength": 0.008000000000000002,
+    "cosine_to_two_step_prior_before_guidance": 0.5636157989501953,
+    "cosine_to_two_step_prior_after_guidance": 0.5683144330978394,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 23,
+    "timestep": 560.0,
+    "guidance_strength": 0.006,
+    "cosine_to_two_step_prior_before_guidance": 0.5778340101242065,
+    "cosine_to_two_step_prior_after_guidance": 0.5813637375831604,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 24,
+    "timestep": 540.0,
+    "guidance_strength": 0.003999999999999998,
+    "cosine_to_two_step_prior_before_guidance": 0.5912672281265259,
+    "cosine_to_two_step_prior_after_guidance": 0.5936248302459717,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 25,
+    "timestep": 520.0,
+    "guidance_strength": 0.0020000000000000018,
+    "cosine_to_two_step_prior_before_guidance": 0.6039752960205078,
+    "cosine_to_two_step_prior_after_guidance": 0.6051567792892456,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 26,
+    "timestep": 500.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.6158460378646851,
+    "cosine_to_two_step_prior_after_guidance": 0.6158460378646851,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 27,
+    "timestep": 480.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.6268728971481323,
+    "cosine_to_two_step_prior_after_guidance": 0.6268728971481323,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 28,
+    "timestep": 460.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.6382039189338684,
+    "cosine_to_two_step_prior_after_guidance": 0.6382039189338684,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 29,
+    "timestep": 440.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.6497527360916138,
+    "cosine_to_two_step_prior_after_guidance": 0.6497527360916138,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 30,
+    "timestep": 420.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.6615389585494995,
+    "cosine_to_two_step_prior_after_guidance": 0.6615389585494995,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 31,
+    "timestep": 400.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.6733489632606506,
+    "cosine_to_two_step_prior_after_guidance": 0.6733489632606506,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 32,
+    "timestep": 380.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.685163140296936,
+    "cosine_to_two_step_prior_after_guidance": 0.685163140296936,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 33,
+    "timestep": 360.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.6968221664428711,
+    "cosine_to_two_step_prior_after_guidance": 0.6968221664428711,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 34,
+    "timestep": 340.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.708351731300354,
+    "cosine_to_two_step_prior_after_guidance": 0.708351731300354,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 35,
+    "timestep": 320.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.7194377183914185,
+    "cosine_to_two_step_prior_after_guidance": 0.7194377183914185,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 36,
+    "timestep": 300.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.7300557494163513,
+    "cosine_to_two_step_prior_after_guidance": 0.7300557494163513,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 37,
+    "timestep": 280.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.7401464581489563,
+    "cosine_to_two_step_prior_after_guidance": 0.7401464581489563,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 38,
+    "timestep": 260.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.7492806315422058,
+    "cosine_to_two_step_prior_after_guidance": 0.7492806315422058,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 39,
+    "timestep": 240.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.7575379610061646,
+    "cosine_to_two_step_prior_after_guidance": 0.7575379610061646,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 40,
+    "timestep": 220.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.7647721767425537,
+    "cosine_to_two_step_prior_after_guidance": 0.7647721767425537,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 41,
+    "timestep": 200.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.7708420157432556,
+    "cosine_to_two_step_prior_after_guidance": 0.7708420157432556,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 42,
+    "timestep": 180.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.7755841016769409,
+    "cosine_to_two_step_prior_after_guidance": 0.7755841016769409,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 43,
+    "timestep": 160.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.7789121866226196,
+    "cosine_to_two_step_prior_after_guidance": 0.7789121866226196,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 44,
+    "timestep": 140.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.780937671661377,
+    "cosine_to_two_step_prior_after_guidance": 0.780937671661377,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 45,
+    "timestep": 120.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.7817224264144897,
+    "cosine_to_two_step_prior_after_guidance": 0.7817224264144897,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 46,
+    "timestep": 100.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.7812609672546387,
+    "cosine_to_two_step_prior_after_guidance": 0.7812609672546387,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 47,
+    "timestep": 80.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.7797327041625977,
+    "cosine_to_two_step_prior_after_guidance": 0.7797327041625977,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 48,
+    "timestep": 60.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.777393102645874,
+    "cosine_to_two_step_prior_after_guidance": 0.777393102645874,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 49,
+    "timestep": 40.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.7747092247009277,
+    "cosine_to_two_step_prior_after_guidance": 0.7747092247009277,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  },
+  {
+    "step_one_based": 50,
+    "timestep": 20.0,
+    "guidance_strength": 0.0,
+    "cosine_to_two_step_prior_before_guidance": 0.7724388837814331,
+    "cosine_to_two_step_prior_after_guidance": 0.7724388837814331,
+    "pipeline_latent_shape": [
+      1,
+      5280,
+      128
+    ]
+  }
+]

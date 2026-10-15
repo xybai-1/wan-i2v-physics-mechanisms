@@ -1,0 +1,93 @@
+{
+  "created_at": "2026-10-14T18:22:51.236624+00:00",
+  "slurm_job_id": "4648",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "d4c515bd88ab9cef397e664bcc794f49685fc4ed",
+  "study_id": "formation_preservation_matrix_v1",
+  "model_key": "wan21_i2v",
+  "model": {
+    "label": "Wan2.1-I2V-14B",
+    "pipeline": "wan",
+    "repo_id": "Wan-AI/Wan2.1-I2V-14B-720P-Diffusers",
+    "revision": "eb849f76dfa246545b65774a9e25943ee69b3fa3",
+    "local_dir": "Wan2.1-I2V-14B-720P-Diffusers",
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "fps": 16,
+    "guidance_scale": 5.0,
+    "transformer_calls_per_step": 2,
+    "cfg_layout": "separate_calls"
+  },
+  "case": {
+    "case_id": "phygenbench_single_elastic_ball",
+    "benchmark": "PhyGenBench",
+    "complexity": "single_entity_motion",
+    "source_id": "prompt_index_25",
+    "prompt": "A vibrant, elastic rubber ball is thrown forcefully towards the ground, capturing its dynamic interaction with the surface upon impact.",
+    "physical_laws": [
+      "elasticity",
+      "gravity",
+      "collision"
+    ],
+    "first_image": "phygenbench_flux/prompt_025.png",
+    "first_image_generator": {
+      "model": "black-forest-labs/FLUX.1-schnell",
+      "seed": 4242,
+      "prompt": "Scientific demonstration, static locked-off camera. One intact vibrant elastic rubber ball is suspended just above a solid flat ground surface immediately before release. The ball and ground are fully visible. Pre-action scene, no motion blur, no bounce, no impact yet."
+    }
+  },
+  "seed": 42,
+  "arm": "phaselock",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/phygenbench_flux/prompt_025.png",
+  "conditioning_sha256": "f912aa9f8b8d6046e25af9c23815c2b7784af9c49ca92a2248f746be50917151",
+  "protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "phaselock_revision_expected": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "phaselock_revision_actual": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "vae_posterior_for_motion_prior": "mode (deterministic)",
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "checkpoints": [
+      "checkpoint_step_001.mp4",
+      "checkpoint_step_002.mp4",
+      "checkpoint_step_004.mp4",
+      "checkpoint_step_008.mp4",
+      "checkpoint_step_025.mp4",
+      "checkpoint_step_050.mp4"
+    ],
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_stats": "attention/attention_activation_stats.npz",
+    "attention_metadata": "attention/attention_activation_metadata.json"
+  },
+  "raw_latents_or_attention_matrices_saved": false
+}

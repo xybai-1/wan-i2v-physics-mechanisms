@@ -1,0 +1,32 @@
+{
+  "cluster": "goose.egr.vcu.edu",
+  "jobs": [
+    {
+      "job_id": 4648,
+      "name": "mech-matrix-full",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "11:16:30",
+      "start": "2026-10-14T10:02:52",
+      "end": "2026-10-14T21:19:22",
+      "resources": "cpu=12,mem=180G,gres/gpu=1,node=1"
+    },
+    {
+      "job_id": 4649,
+      "name": "mech-matrix-full",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "03:39:36",
+      "start": "2026-10-14T10:02:52",
+      "end": "2026-10-14T13:42:28",
+      "resources": "cpu=12,mem=180G,gres/gpu=1,node=1"
+    }
+  ],
+  "run_provenance": {
+    "4646": 2,
+    "4647": 4,
+    "4648": 52,
+    "4649": 104
+  },
+  "note": "Jobs 4648 and 4649 skipped six already-complete pilot cells from jobs 4646 and 4647. All 162 cells share the same frozen study revision and passed the final audit."
+}

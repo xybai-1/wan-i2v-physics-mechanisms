@@ -1,0 +1,90 @@
+{
+  "created_at": "2026-10-14T17:13:35.779551+00:00",
+  "slurm_job_id": "4649",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "d4c515bd88ab9cef397e664bcc794f49685fc4ed",
+  "study_id": "formation_preservation_matrix_v1",
+  "model_key": "ltx_video_i2v",
+  "model": {
+    "label": "LTX-Video-0.9.5-I2V",
+    "pipeline": "ltx",
+    "repo_id": "Lightricks/LTX-Video-0.9.5",
+    "revision": "e58e28c39631af4d1468ee57a853764e11c1d37e",
+    "local_dir": "LTX-Video-0.9.5",
+    "height": 480,
+    "width": 704,
+    "num_frames": 121,
+    "fps": 30,
+    "guidance_scale": 3.0,
+    "transformer_calls_per_step": 1,
+    "cfg_layout": "batched_uncond_cond"
+  },
+  "case": {
+    "case_id": "phyground_pair_balls_collide",
+    "benchmark": "PhyGround",
+    "complexity": "two_entity_contact",
+    "source_id": "0032_perspective-center_trimmed-balls-collide",
+    "prompt": "A light-colored wooden tabletop with two pipes at the edges. A blue and yellow tennis ball roll out of the pipes and towards each other. The two balls collide and bounce off each other. Static shot with no camera movement.",
+    "physical_laws": [
+      "momentum",
+      "collision",
+      "impenetrability",
+      "inertia"
+    ],
+    "first_image": "phyground/0032_perspective-center_trimmed-balls-collide.jpg",
+    "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0032_perspective-center_trimmed-balls-collide.jpg"
+  },
+  "seed": 777,
+  "arm": "baseline",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/phyground/0032_perspective-center_trimmed-balls-collide.jpg",
+  "conditioning_sha256": "c2956d6e523b4ec30f47f4bf117707a89b25d490e9b53ab9e86ab9d325fe5766",
+  "protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "phaselock_revision_expected": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "phaselock_revision_actual": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "vae_posterior_for_motion_prior": "mode (deterministic)",
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "checkpoints": [
+      "checkpoint_step_001.mp4",
+      "checkpoint_step_002.mp4",
+      "checkpoint_step_004.mp4",
+      "checkpoint_step_008.mp4",
+      "checkpoint_step_025.mp4",
+      "checkpoint_step_050.mp4"
+    ],
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_stats": "attention/attention_activation_stats.npz",
+    "attention_metadata": "attention/attention_activation_metadata.json"
+  },
+  "raw_latents_or_attention_matrices_saved": false
+}

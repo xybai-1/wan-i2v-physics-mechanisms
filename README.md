@@ -7,6 +7,9 @@ The frozen three-backbone follow-up matrix is documented in
 [`docs/mechanism_matrix_v1.md`](docs/mechanism_matrix_v1.md), with its registered
 cases and revisions in
 [`configs/mechanism_matrix_v1.json`](configs/mechanism_matrix_v1.json).
+The completed 162-run audit, mechanism analysis, compact activation summaries,
+and review videos are published under
+[`results/goose/mechanism_matrix_v1/`](results/goose/mechanism_matrix_v1/ANALYSIS.md).
 
 ## Scientific question
 
@@ -40,9 +43,9 @@ an explicit, tested port.
 ## Repository policy
 
 - Git stores code, manifests, small plots, summarized metrics, environment
-  locks, and provenance.
-- Model weights, raw videos, attention tensors, and latent dumps stay on GOOSE
-  and are backed up separately.
+  locks, provenance, and explicitly reviewed compact result videos.
+- Model weights, caches, raw attention matrices, latent dumps, and large
+  checkpoint-video collections stay on GOOSE and are backed up separately.
 - Every run writes a machine-readable record containing the Git commit,
   upstream revisions, model revision, sample ID, seed, and Slurm job ID.
 - No full benchmark generation is submitted before one matched smoke case

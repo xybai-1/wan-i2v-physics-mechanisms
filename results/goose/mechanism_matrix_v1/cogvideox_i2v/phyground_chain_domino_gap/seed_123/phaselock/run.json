@@ -1,0 +1,90 @@
+{
+  "created_at": "2026-10-14T14:59:20.655243+00:00",
+  "slurm_job_id": "4649",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "d4c515bd88ab9cef397e664bcc794f49685fc4ed",
+  "study_id": "formation_preservation_matrix_v1",
+  "model_key": "cogvideox_i2v",
+  "model": {
+    "label": "CogVideoX-5B-I2V",
+    "pipeline": "cogvideox",
+    "repo_id": "THUDM/CogVideoX-5b-I2V",
+    "revision": "a6f0f4858a8395e7429d82493864ce92bf73af11",
+    "local_dir": "CogVideoX-5b-I2V",
+    "height": 480,
+    "width": 720,
+    "num_frames": 49,
+    "fps": 8,
+    "guidance_scale": 6.0,
+    "transformer_calls_per_step": 1,
+    "cfg_layout": "batched_uncond_cond"
+  },
+  "case": {
+    "case_id": "phyground_chain_domino_gap",
+    "benchmark": "PhyGround",
+    "complexity": "multi_stage_causal_chain",
+    "source_id": "0050_perspective-center_trimmed-dominos-with-space",
+    "prompt": "Two rows of alternating black and white dominoes are set up on a wooden table with a gap between the two rows. A wooden stick attached to a rotating platform rotates clockwise and knocks the first domino in the first row. The dominoes in the first row topple over one by one, bridging the gap and causing the second row to also topple. Static shot with no camera movement.",
+    "physical_laws": [
+      "collision",
+      "momentum",
+      "impenetrability",
+      "gravity"
+    ],
+    "first_image": "phyground/0050_perspective-center_trimmed-dominos-with-space.jpg",
+    "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0050_perspective-center_trimmed-dominos-with-space.jpg"
+  },
+  "seed": 123,
+  "arm": "phaselock",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/phyground/0050_perspective-center_trimmed-dominos-with-space.jpg",
+  "conditioning_sha256": "12f9bb1a83d6dcfcae4bff8dbd4f3d96f7ea764db6f0224c41a76462d9cb63f5",
+  "protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "phaselock_revision_expected": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "phaselock_revision_actual": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "vae_posterior_for_motion_prior": "mode (deterministic)",
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "checkpoints": [
+      "checkpoint_step_001.mp4",
+      "checkpoint_step_002.mp4",
+      "checkpoint_step_004.mp4",
+      "checkpoint_step_008.mp4",
+      "checkpoint_step_025.mp4",
+      "checkpoint_step_050.mp4"
+    ],
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_stats": "attention/attention_activation_stats.npz",
+    "attention_metadata": "attention/attention_activation_metadata.json"
+  },
+  "raw_latents_or_attention_matrices_saved": false
+}

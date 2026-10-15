@@ -1,0 +1,90 @@
+{
+  "created_at": "2026-10-14T17:38:59.994218+00:00",
+  "slurm_job_id": "4649",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "d4c515bd88ab9cef397e664bcc794f49685fc4ed",
+  "study_id": "formation_preservation_matrix_v1",
+  "model_key": "ltx_video_i2v",
+  "model": {
+    "label": "LTX-Video-0.9.5-I2V",
+    "pipeline": "ltx",
+    "repo_id": "Lightricks/LTX-Video-0.9.5",
+    "revision": "e58e28c39631af4d1468ee57a853764e11c1d37e",
+    "local_dir": "LTX-Video-0.9.5",
+    "height": 480,
+    "width": 704,
+    "num_frames": 121,
+    "fps": 30,
+    "guidance_scale": 3.0,
+    "transformer_calls_per_step": 1,
+    "cfg_layout": "batched_uncond_cond"
+  },
+  "case": {
+    "case_id": "physics_iq_chain_weight_protects_duck",
+    "benchmark": "Physics-IQ Verified",
+    "complexity": "multi_stage_causal_chain",
+    "source_id": "0198_perspective-right_trimmed-weight-protects-duck",
+    "prompt": "Static locked-off single-shot with fixed frame throughout filmed with constant framerate in real-time. The scene shows a realistic scientific demonstration. The scene only contains the described setup and actions. The 30lb kettlebell and the yellow rubber duck sit on a light-colored wooden table. The black pipe is on the left side of the table and points to the right. The grey tennis ball rolls swiftly straight out of the black pipe from the left side and hits the 30lb kettlebell.",
+    "physical_laws": [
+      "momentum",
+      "collision",
+      "shielding",
+      "multi-object causality"
+    ],
+    "first_image": "physics_iq_verified/0198_perspective-right_trimmed-weight-protects-duck.jpg",
+    "first_image_url": "https://storage.googleapis.com/physics-iq-benchmark/switch-frames/0198_switch-frames_anyFPS_perspective-right_trimmed-weight-protects-duck.jpg"
+  },
+  "seed": 42,
+  "arm": "baseline",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/physics_iq_verified/0198_perspective-right_trimmed-weight-protects-duck.jpg",
+  "conditioning_sha256": "6af3b5361db0312c2095e333457a7980ac487679da56f03030fd105ef110372e",
+  "protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "phaselock_revision_expected": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "phaselock_revision_actual": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "vae_posterior_for_motion_prior": "mode (deterministic)",
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "checkpoints": [
+      "checkpoint_step_001.mp4",
+      "checkpoint_step_002.mp4",
+      "checkpoint_step_004.mp4",
+      "checkpoint_step_008.mp4",
+      "checkpoint_step_025.mp4",
+      "checkpoint_step_050.mp4"
+    ],
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_stats": "attention/attention_activation_stats.npz",
+    "attention_metadata": "attention/attention_activation_metadata.json"
+  },
+  "raw_latents_or_attention_matrices_saved": false
+}

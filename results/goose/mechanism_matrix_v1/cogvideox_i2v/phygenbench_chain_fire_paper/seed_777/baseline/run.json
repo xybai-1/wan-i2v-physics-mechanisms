@@ -1,0 +1,93 @@
+{
+  "created_at": "2026-10-14T16:05:57.781199+00:00",
+  "slurm_job_id": "4649",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "d4c515bd88ab9cef397e664bcc794f49685fc4ed",
+  "study_id": "formation_preservation_matrix_v1",
+  "model_key": "cogvideox_i2v",
+  "model": {
+    "label": "CogVideoX-5B-I2V",
+    "pipeline": "cogvideox",
+    "repo_id": "THUDM/CogVideoX-5b-I2V",
+    "revision": "a6f0f4858a8395e7429d82493864ce92bf73af11",
+    "local_dir": "CogVideoX-5b-I2V",
+    "height": 480,
+    "width": 720,
+    "num_frames": 49,
+    "fps": 8,
+    "guidance_scale": 6.0,
+    "transformer_calls_per_step": 1,
+    "cfg_layout": "batched_uncond_cond"
+  },
+  "case": {
+    "case_id": "phygenbench_chain_fire_paper",
+    "benchmark": "PhyGenBench",
+    "complexity": "multi_stage_causal_chain",
+    "source_id": "prompt_index_140",
+    "prompt": "A small burning ball of paper was thrown into a pile of dry paper.",
+    "physical_laws": [
+      "combustibility",
+      "heat transfer",
+      "causal propagation"
+    ],
+    "first_image": "phygenbench_flux/prompt_140.png",
+    "first_image_generator": {
+      "model": "black-forest-labs/FLUX.1-schnell",
+      "seed": 4244,
+      "prompt": "Scientific demonstration, static locked-off camera. A small burning paper ball is in midair on the left immediately before reaching a separate pile of dry paper on the right. Both are fully visible. Pre-action scene; the target pile is intact, dry, and not yet ignited."
+    }
+  },
+  "seed": 777,
+  "arm": "baseline",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/phygenbench_flux/prompt_140.png",
+  "conditioning_sha256": "7e0b7cadd97324a04413f5d4922028eae91b0cf3dd91e5bc34cce89fd44c6978",
+  "protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "phaselock_revision_expected": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "phaselock_revision_actual": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "vae_posterior_for_motion_prior": "mode (deterministic)",
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "checkpoints": [
+      "checkpoint_step_001.mp4",
+      "checkpoint_step_002.mp4",
+      "checkpoint_step_004.mp4",
+      "checkpoint_step_008.mp4",
+      "checkpoint_step_025.mp4",
+      "checkpoint_step_050.mp4"
+    ],
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_stats": "attention/attention_activation_stats.npz",
+    "attention_metadata": "attention/attention_activation_metadata.json"
+  },
+  "raw_latents_or_attention_matrices_saved": false
+}
