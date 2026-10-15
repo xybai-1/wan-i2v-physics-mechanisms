@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "study_id": "causal_attention_diagnostics_v1",
+  "parent_study_id": "formation_preservation_matrix_v1",
+  "parent_revision": "d4c515bd88ab9cef397e664bcc794f49685fc4ed",
+  "purpose": "Localize directed object-to-object and temporal attention pathways before any training-free intervention is enabled.",
+  "protocol": {
+    "seed": 42,
+    "arms": ["baseline", "phaselock"],
+    "steps_zero_based": [0, 1, 3, 7],
+    "query_topk_per_frame": 2,
+    "support_topk_per_frame": 8,
+    "query_chunk_size": 2,
+    "cross_query_chunk_size": 256,
+    "intervention": "none",
+    "noninvasive_reference_required": true,
+    "raw_latents_saved": false
+  },
+  "models": {
+    "wan21_i2v": {
+      "entity_map_layers": [0, 1, 32, 37],
+      "self_source_layer_pairs": [[1, 0], [2, 1], [33, 32], [38, 37]]
+    },
+    "cogvideox_i2v": {
+      "entity_map_layers": [35, 37, 39],
+      "self_source_layer_pairs": [[35, 35], [37, 37], [39, 39]]
+    },
+    "ltx_video_i2v": {
+      "entity_map_layers": [0, 1, 2],
+      "self_source_layer_pairs": [[1, 0], [2, 1]]
+    }
+  },
+  "cases": [
+    {
+      "case_id": "physics_iq_single_ball_free",
+      "role": "single_entity_control",
+      "attention_targets": {
+        "moving_ball": "orange tennis ball",
+        "table": "wooden coffee table",
+        "event": "rolls straight"
+      }
+    },
+    {
+      "case_id": "phyground_pair_balls_collide",
+      "role": "two_entity_contact",
+      "attention_targets": {
+        "blue_ball": "blue",
+        "yellow_ball": "yellow tennis ball",
+        "event": "collide"
+      }
+    },
+    {
+      "case_id": "phygenbench_pair_egg_rock",
+      "role": "material_contact",
+      "attention_targets": {
+        "egg": "egg",
+        "rock": "rock",
+        "event": "impact"
+      }
+    },
+    {
+      "case_id": "phyground_chain_domino_gap",
+      "role": "multi_stage_contact_chain",
+      "attention_targets": {
+        "wooden_stick": "wooden stick",
+        "first_row": "first row",
+        "second_row": "second row",
+        "event": "bridging the gap"
+      }
+    },
+    {
+      "case_id": "phygenbench_chain_fire_paper",
+      "role": "cross_object_state_propagation",
+      "attention_targets": {
+        "burning_ball": "burning ball of paper",
+        "paper_pile": "pile of dry paper",
+        "event": "thrown into"
+      }
+    },
+    {
+      "case_id": "physics_iq_chain_weight_protects_duck",
+      "role": "multi_object_shielding",
+      "attention_targets": {
+        "grey_ball": "grey tennis ball",
+        "kettlebell": "30lb kettlebell",
+        "duck": "yellow rubber duck",
+        "event": "hits"
+      }
+    }
+  ]
+}
