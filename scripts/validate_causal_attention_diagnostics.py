@@ -5,34 +5,24 @@ from __future__ import annotations
 
 import argparse
 import json
-import subprocess
 from pathlib import Path
 
+import imageio_ffmpeg
 import numpy as np
 
 
 def video_decodes(path: Path) -> bool:
-    result = subprocess.run(
-        [
-            "ffprobe",
-            "-v",
-            "error",
-            "-select_streams",
-            "v:0",
-            "-show_entries",
-            "stream=codec_name,nb_frames",
-            "-of",
-            "json",
-            str(path),
-        ],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    if result.returncode != 0:
+    reader = None
+    try:
+        reader = imageio_ffmpeg.read_frames(str(path), pix_fmt="rgb24")
+        metadata = next(reader)
+        frame = next(reader)
+        return bool(metadata.get("size") and frame)
+    except (OSError, RuntimeError, StopIteration):
         return False
-    streams = json.loads(result.stdout).get("streams", [])
-    return bool(streams and streams[0].get("codec_name"))
+    finally:
+        if reader is not None:
+            reader.close()
 
 
 def main() -> None:
