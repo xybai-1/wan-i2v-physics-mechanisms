@@ -1,0 +1,327 @@
+{
+  "schema_version": 1,
+  "model_kind": "ltx",
+  "step_indexing": "zero-based; displayed denoising step is step + 1",
+  "branch": "conditional CFG branch only",
+  "grid_thw": [
+    16,
+    15,
+    22
+  ],
+  "tokenization": {
+    "prompt": "A light-colored wooden tabletop with two pipes at the edges. A blue and yellow tennis ball roll out of the pipes and towards each other. The two balls collide and bounce off each other. Static shot with no camera movement.",
+    "targets": {
+      "blue_ball": "blue",
+      "yellow_ball": "yellow tennis ball",
+      "event": "collide"
+    },
+    "positions": {
+      "blue_ball": [
+        15
+      ],
+      "yellow_ball": [
+        17,
+        18,
+        19
+      ],
+      "event": [
+        33,
+        34
+      ]
+    },
+    "max_length": 128,
+    "location_method": "token_id_subsequence",
+    "tokens": [
+      "\u2581A",
+      "\u2581light",
+      "-",
+      "colored",
+      "\u2581wooden",
+      "\u2581table",
+      "top",
+      "\u2581with",
+      "\u2581two",
+      "\u2581pipes",
+      "\u2581at",
+      "\u2581the",
+      "\u2581edges",
+      ".",
+      "\u2581A",
+      "\u2581blue",
+      "\u2581and",
+      "\u2581yellow",
+      "\u2581tennis",
+      "\u2581ball",
+      "\u2581roll",
+      "\u2581out",
+      "\u2581of",
+      "\u2581the",
+      "\u2581pipes",
+      "\u2581and",
+      "\u2581towards",
+      "\u2581each",
+      "\u2581other",
+      ".",
+      "\u2581The",
+      "\u2581two",
+      "\u2581balls",
+      "\u2581coll",
+      "ide",
+      "\u2581and",
+      "\u2581bounce",
+      "\u2581off",
+      "\u2581each",
+      "\u2581other",
+      ".",
+      "\u2581St",
+      "atic",
+      "\u2581shot",
+      "\u2581with",
+      "\u2581no",
+      "\u2581camera",
+      "\u2581movement",
+      ".",
+      "</s>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>"
+    ]
+  },
+  "plan": {
+    "steps": [
+      0,
+      1,
+      3,
+      7
+    ],
+    "entity_map_layers": [
+      0,
+      1,
+      2
+    ],
+    "self_source_layer_pairs": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "query_topk_per_frame": 2,
+    "support_topk_per_frame": 8
+  },
+  "events": [
+    {
+      "kind": "entity_qk_affinity",
+      "step": 0,
+      "layer": 0,
+      "timestep": 937.5
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 0,
+      "layer": 1,
+      "source_entity_layer": 0,
+      "timestep": 937.5
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 0,
+      "layer": 1,
+      "timestep": 937.5
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 0,
+      "layer": 2,
+      "source_entity_layer": 1,
+      "timestep": 937.5
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 0,
+      "layer": 2,
+      "timestep": 937.5
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 1,
+      "layer": 0,
+      "timestep": 918.75
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 1,
+      "layer": 1,
+      "source_entity_layer": 0,
+      "timestep": 918.75
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 1,
+      "layer": 1,
+      "timestep": 918.75
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 1,
+      "layer": 2,
+      "source_entity_layer": 1,
+      "timestep": 918.75
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 1,
+      "layer": 2,
+      "timestep": 918.75
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 3,
+      "layer": 0,
+      "timestep": 881.25
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 3,
+      "layer": 1,
+      "source_entity_layer": 0,
+      "timestep": 881.25
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 3,
+      "layer": 1,
+      "timestep": 881.25
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 3,
+      "layer": 2,
+      "source_entity_layer": 1,
+      "timestep": 881.25
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 3,
+      "layer": 2,
+      "timestep": 881.25
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 7,
+      "layer": 0,
+      "timestep": 806.25
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 7,
+      "layer": 1,
+      "source_entity_layer": 0,
+      "timestep": 806.25
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 7,
+      "layer": 1,
+      "timestep": 806.25
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 7,
+      "layer": 2,
+      "source_entity_layer": 1,
+      "timestep": 806.25
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 7,
+      "layer": 2,
+      "timestep": 806.25
+    }
+  ],
+  "array_count": 108,
+  "interpretation": {
+    "entity_qk": "Scaled, head-mean QK affinity from video queries to selected text tokens; not softmax probability.",
+    "self": "Exact head-mean self-attention probability mass from source-entity query supports to target-entity key supports, indexed by query/key frame.",
+    "caveat": "Attention is correlational localization. Causal claims require a later intervention experiment."
+  },
+  "generation_path_modified": false
+}

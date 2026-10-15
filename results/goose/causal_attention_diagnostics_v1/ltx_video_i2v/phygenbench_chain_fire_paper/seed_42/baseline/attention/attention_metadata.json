@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "model_kind": "ltx",
+  "step_indexing": "zero-based; displayed denoising step is step + 1",
+  "branch": "conditional CFG branch only",
+  "grid_thw": [
+    16,
+    15,
+    22
+  ],
+  "tokenization": {
+    "prompt": "A small burning ball of paper was thrown into a pile of dry paper.",
+    "targets": {
+      "burning_ball": "burning ball of paper",
+      "paper_pile": "pile of dry paper",
+      "event": "thrown into"
+    },
+    "positions": {
+      "burning_ball": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "paper_pile": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "event": [
+        7,
+        8,
+        9
+      ]
+    },
+    "max_length": 128,
+    "location_method": "token_id_subsequence",
+    "tokens": [
+      "\u2581A",
+      "\u2581small",
+      "\u2581burning",
+      "\u2581ball",
+      "\u2581of",
+      "\u2581paper",
+      "\u2581was",
+      "\u2581",
+      "thrown",
+      "\u2581into",
+      "\u2581",
+      "a",
+      "\u2581pile",
+      "\u2581of",
+      "\u2581dry",
+      "\u2581paper",
+      ".",
+      "</s>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>",
+      "<pad>"
+    ]
+  },
+  "plan": {
+    "steps": [
+      0,
+      1,
+      3,
+      7
+    ],
+    "entity_map_layers": [
+      0,
+      1,
+      2
+    ],
+    "self_source_layer_pairs": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "query_topk_per_frame": 2,
+    "support_topk_per_frame": 8
+  },
+  "events": [
+    {
+      "kind": "entity_qk_affinity",
+      "step": 0,
+      "layer": 0,
+      "timestep": 937.5
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 0,
+      "layer": 1,
+      "source_entity_layer": 0,
+      "timestep": 937.5
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 0,
+      "layer": 1,
+      "timestep": 937.5
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 0,
+      "layer": 2,
+      "source_entity_layer": 1,
+      "timestep": 937.5
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 0,
+      "layer": 2,
+      "timestep": 937.5
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 1,
+      "layer": 0,
+      "timestep": 918.75
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 1,
+      "layer": 1,
+      "source_entity_layer": 0,
+      "timestep": 918.75
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 1,
+      "layer": 1,
+      "timestep": 918.75
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 1,
+      "layer": 2,
+      "source_entity_layer": 1,
+      "timestep": 918.75
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 1,
+      "layer": 2,
+      "timestep": 918.75
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 3,
+      "layer": 0,
+      "timestep": 881.25
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 3,
+      "layer": 1,
+      "source_entity_layer": 0,
+      "timestep": 881.25
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 3,
+      "layer": 1,
+      "timestep": 881.25
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 3,
+      "layer": 2,
+      "source_entity_layer": 1,
+      "timestep": 881.25
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 3,
+      "layer": 2,
+      "timestep": 881.25
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 7,
+      "layer": 0,
+      "timestep": 806.25
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 7,
+      "layer": 1,
+      "source_entity_layer": 0,
+      "timestep": 806.25
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 7,
+      "layer": 1,
+      "timestep": 806.25
+    },
+    {
+      "kind": "sparse_self_attention",
+      "step": 7,
+      "layer": 2,
+      "source_entity_layer": 1,
+      "timestep": 806.25
+    },
+    {
+      "kind": "entity_qk_affinity",
+      "step": 7,
+      "layer": 2,
+      "timestep": 806.25
+    }
+  ],
+  "array_count": 108,
+  "interpretation": {
+    "entity_qk": "Scaled, head-mean QK affinity from video queries to selected text tokens; not softmax probability.",
+    "self": "Exact head-mean self-attention probability mass from source-entity query supports to target-entity key supports, indexed by query/key frame.",
+    "caveat": "Attention is correlational localization. Causal claims require a later intervention experiment."
+  },
+  "generation_path_modified": false
+}

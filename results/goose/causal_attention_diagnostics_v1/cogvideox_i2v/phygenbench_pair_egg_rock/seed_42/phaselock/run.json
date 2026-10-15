@@ -1,0 +1,156 @@
+{
+  "created_at": "2026-10-15T02:33:51.899646+00:00",
+  "slurm_job_id": "4671",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "bcdc9e9",
+  "study_id": "causal_attention_diagnostics_v1",
+  "parent_study_id": "formation_preservation_matrix_v1",
+  "model_key": "cogvideox_i2v",
+  "model": {
+    "label": "CogVideoX-5B-I2V",
+    "pipeline": "cogvideox",
+    "repo_id": "THUDM/CogVideoX-5b-I2V",
+    "revision": "a6f0f4858a8395e7429d82493864ce92bf73af11",
+    "local_dir": "CogVideoX-5b-I2V",
+    "height": 480,
+    "width": 720,
+    "num_frames": 49,
+    "fps": 8,
+    "guidance_scale": 6.0,
+    "transformer_calls_per_step": 1,
+    "cfg_layout": "batched_uncond_cond"
+  },
+  "case": {
+    "case_id": "phygenbench_pair_egg_rock",
+    "benchmark": "PhyGenBench",
+    "complexity": "two_entity_contact",
+    "source_id": "prompt_index_130",
+    "prompt": "A delicate, fragile egg is hurled with significant force towards a rugged, solid rock surface, where it collides upon impact",
+    "physical_laws": [
+      "hardness",
+      "collision",
+      "material fracture"
+    ],
+    "first_image": "phygenbench_flux/prompt_130.png",
+    "first_image_generator": {
+      "model": "black-forest-labs/FLUX.1-schnell",
+      "seed": 4243,
+      "prompt": "Scientific demonstration, static locked-off camera. One intact fragile egg is in midair on the left and one rugged solid rock is on the right, immediately before contact. Both objects are fully visible and separated. Pre-action scene, no motion blur, no crack, no damage, no impact yet."
+    }
+  },
+  "diagnostic_case": {
+    "case_id": "phygenbench_pair_egg_rock",
+    "role": "material_contact",
+    "attention_targets": {
+      "egg": "egg",
+      "rock": "rock",
+      "event": "impact"
+    }
+  },
+  "seed": 42,
+  "arm": "phaselock",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/phygenbench_flux/prompt_130.png",
+  "conditioning_sha256": "dffaa2347eedbeb26d7adc11615095c4d759c623bf53b49baf61419b4b7ce0a4",
+  "parent_protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "diagnostic_protocol": {
+    "seed": 42,
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "steps_zero_based": [
+      0,
+      1,
+      3,
+      7
+    ],
+    "query_topk_per_frame": 2,
+    "support_topk_per_frame": 8,
+    "query_chunk_size": 2,
+    "cross_query_chunk_size": 256,
+    "intervention": "none",
+    "noninvasive_reference_required": true,
+    "raw_latents_saved": false
+  },
+  "probe_model_config": {
+    "entity_map_layers": [
+      35,
+      37,
+      39
+    ],
+    "self_source_layer_pairs": [
+      [
+        35,
+        35
+      ],
+      [
+        37,
+        37
+      ],
+      [
+        39,
+        39
+      ]
+    ]
+  },
+  "grid_thw": [
+    13,
+    30,
+    45
+  ],
+  "phaselock_revision_expected": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "phaselock_revision_actual": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "noninvasive_video_check": {
+    "few_step": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/cogvideox_i2v/phygenbench_pair_egg_rock/seed_42/phaselock/few_step.mp4",
+      "reference_sha256": "2027f1946a309183a778bf557826bb9d0a8a524f89464b1c8f921a2ea7fd097c",
+      "diagnostic_sha256": "2027f1946a309183a778bf557826bb9d0a8a524f89464b1c8f921a2ea7fd097c",
+      "identical": true
+    },
+    "final": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/cogvideox_i2v/phygenbench_pair_egg_rock/seed_42/phaselock/final.mp4",
+      "reference_sha256": "373060a1e89cbd75c93fcb863e10dd306d044d689c81f24534c7d40158c6ef13",
+      "diagnostic_sha256": "373060a1e89cbd75c93fcb863e10dd306d044d689c81f24534c7d40158c6ef13",
+      "identical": true
+    }
+  },
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_maps": "attention/attention_maps.npz",
+    "attention_metadata": "attention/attention_metadata.json",
+    "noninvasive_check": "noninvasive_check.json"
+  },
+  "intervention_enabled": false,
+  "raw_latents_saved": false
+}

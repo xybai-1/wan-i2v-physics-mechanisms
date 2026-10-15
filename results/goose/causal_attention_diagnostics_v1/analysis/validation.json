@@ -1,0 +1,260 @@
+{
+  "valid": true,
+  "checked_runs": 36,
+  "expected_runs": 36,
+  "errors": [],
+  "runs": [
+    {
+      "model": "wan21_i2v",
+      "case": "physics_iq_single_ball_free",
+      "arm": "baseline",
+      "arrays": 192,
+      "events": 32
+    },
+    {
+      "model": "wan21_i2v",
+      "case": "physics_iq_single_ball_free",
+      "arm": "phaselock",
+      "arrays": 192,
+      "events": 32
+    },
+    {
+      "model": "wan21_i2v",
+      "case": "phyground_pair_balls_collide",
+      "arm": "baseline",
+      "arrays": 192,
+      "events": 32
+    },
+    {
+      "model": "wan21_i2v",
+      "case": "phyground_pair_balls_collide",
+      "arm": "phaselock",
+      "arrays": 192,
+      "events": 32
+    },
+    {
+      "model": "wan21_i2v",
+      "case": "phygenbench_pair_egg_rock",
+      "arm": "baseline",
+      "arrays": 192,
+      "events": 32
+    },
+    {
+      "model": "wan21_i2v",
+      "case": "phygenbench_pair_egg_rock",
+      "arm": "phaselock",
+      "arrays": 192,
+      "events": 32
+    },
+    {
+      "model": "wan21_i2v",
+      "case": "phyground_chain_domino_gap",
+      "arm": "baseline",
+      "arrays": 320,
+      "events": 32
+    },
+    {
+      "model": "wan21_i2v",
+      "case": "phyground_chain_domino_gap",
+      "arm": "phaselock",
+      "arrays": 320,
+      "events": 32
+    },
+    {
+      "model": "wan21_i2v",
+      "case": "phygenbench_chain_fire_paper",
+      "arm": "baseline",
+      "arrays": 192,
+      "events": 32
+    },
+    {
+      "model": "wan21_i2v",
+      "case": "phygenbench_chain_fire_paper",
+      "arm": "phaselock",
+      "arrays": 192,
+      "events": 32
+    },
+    {
+      "model": "wan21_i2v",
+      "case": "physics_iq_chain_weight_protects_duck",
+      "arm": "baseline",
+      "arrays": 320,
+      "events": 32
+    },
+    {
+      "model": "wan21_i2v",
+      "case": "physics_iq_chain_weight_protects_duck",
+      "arm": "phaselock",
+      "arrays": 320,
+      "events": 32
+    },
+    {
+      "model": "cogvideox_i2v",
+      "case": "physics_iq_single_ball_free",
+      "arm": "baseline",
+      "arrays": 144,
+      "events": 24
+    },
+    {
+      "model": "cogvideox_i2v",
+      "case": "physics_iq_single_ball_free",
+      "arm": "phaselock",
+      "arrays": 144,
+      "events": 24
+    },
+    {
+      "model": "cogvideox_i2v",
+      "case": "phyground_pair_balls_collide",
+      "arm": "baseline",
+      "arrays": 144,
+      "events": 24
+    },
+    {
+      "model": "cogvideox_i2v",
+      "case": "phyground_pair_balls_collide",
+      "arm": "phaselock",
+      "arrays": 144,
+      "events": 24
+    },
+    {
+      "model": "cogvideox_i2v",
+      "case": "phygenbench_pair_egg_rock",
+      "arm": "baseline",
+      "arrays": 144,
+      "events": 24
+    },
+    {
+      "model": "cogvideox_i2v",
+      "case": "phygenbench_pair_egg_rock",
+      "arm": "phaselock",
+      "arrays": 144,
+      "events": 24
+    },
+    {
+      "model": "cogvideox_i2v",
+      "case": "phyground_chain_domino_gap",
+      "arm": "baseline",
+      "arrays": 240,
+      "events": 24
+    },
+    {
+      "model": "cogvideox_i2v",
+      "case": "phyground_chain_domino_gap",
+      "arm": "phaselock",
+      "arrays": 240,
+      "events": 24
+    },
+    {
+      "model": "cogvideox_i2v",
+      "case": "phygenbench_chain_fire_paper",
+      "arm": "baseline",
+      "arrays": 144,
+      "events": 24
+    },
+    {
+      "model": "cogvideox_i2v",
+      "case": "phygenbench_chain_fire_paper",
+      "arm": "phaselock",
+      "arrays": 144,
+      "events": 24
+    },
+    {
+      "model": "cogvideox_i2v",
+      "case": "physics_iq_chain_weight_protects_duck",
+      "arm": "baseline",
+      "arrays": 240,
+      "events": 24
+    },
+    {
+      "model": "cogvideox_i2v",
+      "case": "physics_iq_chain_weight_protects_duck",
+      "arm": "phaselock",
+      "arrays": 240,
+      "events": 24
+    },
+    {
+      "model": "ltx_video_i2v",
+      "case": "physics_iq_single_ball_free",
+      "arm": "baseline",
+      "arrays": 108,
+      "events": 20
+    },
+    {
+      "model": "ltx_video_i2v",
+      "case": "physics_iq_single_ball_free",
+      "arm": "phaselock",
+      "arrays": 108,
+      "events": 20
+    },
+    {
+      "model": "ltx_video_i2v",
+      "case": "phyground_pair_balls_collide",
+      "arm": "baseline",
+      "arrays": 108,
+      "events": 20
+    },
+    {
+      "model": "ltx_video_i2v",
+      "case": "phyground_pair_balls_collide",
+      "arm": "phaselock",
+      "arrays": 108,
+      "events": 20
+    },
+    {
+      "model": "ltx_video_i2v",
+      "case": "phygenbench_pair_egg_rock",
+      "arm": "baseline",
+      "arrays": 108,
+      "events": 20
+    },
+    {
+      "model": "ltx_video_i2v",
+      "case": "phygenbench_pair_egg_rock",
+      "arm": "phaselock",
+      "arrays": 108,
+      "events": 20
+    },
+    {
+      "model": "ltx_video_i2v",
+      "case": "phyground_chain_domino_gap",
+      "arm": "baseline",
+      "arrays": 176,
+      "events": 20
+    },
+    {
+      "model": "ltx_video_i2v",
+      "case": "phyground_chain_domino_gap",
+      "arm": "phaselock",
+      "arrays": 176,
+      "events": 20
+    },
+    {
+      "model": "ltx_video_i2v",
+      "case": "phygenbench_chain_fire_paper",
+      "arm": "baseline",
+      "arrays": 108,
+      "events": 20
+    },
+    {
+      "model": "ltx_video_i2v",
+      "case": "phygenbench_chain_fire_paper",
+      "arm": "phaselock",
+      "arrays": 108,
+      "events": 20
+    },
+    {
+      "model": "ltx_video_i2v",
+      "case": "physics_iq_chain_weight_protects_duck",
+      "arm": "baseline",
+      "arrays": 176,
+      "events": 20
+    },
+    {
+      "model": "ltx_video_i2v",
+      "case": "physics_iq_chain_weight_protects_duck",
+      "arm": "phaselock",
+      "arrays": 176,
+      "events": 20
+    }
+  ]
+}

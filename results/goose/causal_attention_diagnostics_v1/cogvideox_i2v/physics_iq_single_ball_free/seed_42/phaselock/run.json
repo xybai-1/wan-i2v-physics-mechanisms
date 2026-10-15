@@ -1,0 +1,152 @@
+{
+  "created_at": "2026-10-15T02:21:49.732722+00:00",
+  "slurm_job_id": "4671",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "bcdc9e9",
+  "study_id": "causal_attention_diagnostics_v1",
+  "parent_study_id": "formation_preservation_matrix_v1",
+  "model_key": "cogvideox_i2v",
+  "model": {
+    "label": "CogVideoX-5B-I2V",
+    "pipeline": "cogvideox",
+    "repo_id": "THUDM/CogVideoX-5b-I2V",
+    "revision": "a6f0f4858a8395e7429d82493864ce92bf73af11",
+    "local_dir": "CogVideoX-5b-I2V",
+    "height": 480,
+    "width": 720,
+    "num_frames": 49,
+    "fps": 8,
+    "guidance_scale": 6.0,
+    "transformer_calls_per_step": 1,
+    "cfg_layout": "batched_uncond_cond"
+  },
+  "case": {
+    "case_id": "physics_iq_single_ball_free",
+    "benchmark": "Physics-IQ Verified",
+    "complexity": "single_entity_motion",
+    "source_id": "0012_perspective-right_trimmed-ball-hits-nothing",
+    "prompt": "Static locked-off single-shot with fixed frame throughout filmed with constant framerate in real-time. The scene shows a realistic scientific demonstration. The scene only contains the described setup and actions. A light-colored wooden coffee table with a few small objects on it, including a brown tennis ball and a smaller red ball. The orange tennis ball rolls straight out of the black pipe over the entire table towards the right side.",
+    "physical_laws": [
+      "inertia",
+      "gravity",
+      "rolling motion"
+    ],
+    "first_image": "physics_iq_verified/0012_perspective-right_trimmed-ball-hits-nothing.jpg",
+    "first_image_url": "https://storage.googleapis.com/physics-iq-benchmark/switch-frames/0012_switch-frames_anyFPS_perspective-right_trimmed-ball-hits-nothing.jpg"
+  },
+  "diagnostic_case": {
+    "case_id": "physics_iq_single_ball_free",
+    "role": "single_entity_control",
+    "attention_targets": {
+      "moving_ball": "orange tennis ball",
+      "table": "wooden coffee table",
+      "event": "rolls straight"
+    }
+  },
+  "seed": 42,
+  "arm": "phaselock",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/physics_iq_verified/0012_perspective-right_trimmed-ball-hits-nothing.jpg",
+  "conditioning_sha256": "1b096a5b5b561acba1c1999ba49553a8b120a246687dfd260b44c7deebfcbddb",
+  "parent_protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "diagnostic_protocol": {
+    "seed": 42,
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "steps_zero_based": [
+      0,
+      1,
+      3,
+      7
+    ],
+    "query_topk_per_frame": 2,
+    "support_topk_per_frame": 8,
+    "query_chunk_size": 2,
+    "cross_query_chunk_size": 256,
+    "intervention": "none",
+    "noninvasive_reference_required": true,
+    "raw_latents_saved": false
+  },
+  "probe_model_config": {
+    "entity_map_layers": [
+      35,
+      37,
+      39
+    ],
+    "self_source_layer_pairs": [
+      [
+        35,
+        35
+      ],
+      [
+        37,
+        37
+      ],
+      [
+        39,
+        39
+      ]
+    ]
+  },
+  "grid_thw": [
+    13,
+    30,
+    45
+  ],
+  "phaselock_revision_expected": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "phaselock_revision_actual": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "noninvasive_video_check": {
+    "few_step": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/cogvideox_i2v/physics_iq_single_ball_free/seed_42/phaselock/few_step.mp4",
+      "reference_sha256": "7cc90aff9f190077ebe0cf5f0386125495df6619e90454ae1003e7dec45feff9",
+      "diagnostic_sha256": "7cc90aff9f190077ebe0cf5f0386125495df6619e90454ae1003e7dec45feff9",
+      "identical": true
+    },
+    "final": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/cogvideox_i2v/physics_iq_single_ball_free/seed_42/phaselock/final.mp4",
+      "reference_sha256": "28ba794655c353710de5139eec40f99e94dd201f6ba0af7d1051abb38f5459fd",
+      "diagnostic_sha256": "28ba794655c353710de5139eec40f99e94dd201f6ba0af7d1051abb38f5459fd",
+      "identical": true
+    }
+  },
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_maps": "attention/attention_maps.npz",
+    "attention_metadata": "attention/attention_metadata.json",
+    "noninvasive_check": "noninvasive_check.json"
+  },
+  "intervention_enabled": false,
+  "raw_latents_saved": false
+}

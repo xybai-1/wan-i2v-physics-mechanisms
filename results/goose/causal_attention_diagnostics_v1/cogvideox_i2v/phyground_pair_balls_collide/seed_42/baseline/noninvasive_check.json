@@ -1,0 +1,14 @@
+{
+  "few_step": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/cogvideox_i2v/phyground_pair_balls_collide/seed_42/baseline/few_step.mp4",
+    "reference_sha256": "1dd8bb468bc522ca8a8faa084a9851f8570b486c530bb77e60a4cb2828b23e22",
+    "diagnostic_sha256": "1dd8bb468bc522ca8a8faa084a9851f8570b486c530bb77e60a4cb2828b23e22",
+    "identical": true
+  },
+  "final": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/cogvideox_i2v/phyground_pair_balls_collide/seed_42/baseline/final.mp4",
+    "reference_sha256": "5704094a08b9a28bd45c87d9267714a272478a37c69e8ec322486c53e4cc586c",
+    "diagnostic_sha256": "5704094a08b9a28bd45c87d9267714a272478a37c69e8ec322486c53e4cc586c",
+    "identical": true
+  }
+}

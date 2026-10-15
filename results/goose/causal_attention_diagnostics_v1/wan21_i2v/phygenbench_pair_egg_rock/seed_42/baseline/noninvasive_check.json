@@ -1,0 +1,14 @@
+{
+  "few_step": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phygenbench_pair_egg_rock/seed_42/baseline/few_step.mp4",
+    "reference_sha256": "33b4e315189b020331c6818be0bc3ff42d07902439650180b36c928910a19d61",
+    "diagnostic_sha256": "33b4e315189b020331c6818be0bc3ff42d07902439650180b36c928910a19d61",
+    "identical": true
+  },
+  "final": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phygenbench_pair_egg_rock/seed_42/baseline/final.mp4",
+    "reference_sha256": "8cb3805ab15abf84dd2eba9d9b1eddde89c4ae213816cf9a24726a5a5bd71399",
+    "diagnostic_sha256": "8cb3805ab15abf84dd2eba9d9b1eddde89c4ae213816cf9a24726a5a5bd71399",
+    "identical": true
+  }
+}

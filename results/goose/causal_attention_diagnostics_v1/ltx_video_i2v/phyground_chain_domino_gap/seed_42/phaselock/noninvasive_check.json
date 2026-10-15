@@ -1,0 +1,14 @@
+{
+  "few_step": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/ltx_video_i2v/phyground_chain_domino_gap/seed_42/phaselock/few_step.mp4",
+    "reference_sha256": "b23d7778136f7b3efc146e019bcb13aa35b3f52e38a9d5ca02207a548dfad059",
+    "diagnostic_sha256": "b23d7778136f7b3efc146e019bcb13aa35b3f52e38a9d5ca02207a548dfad059",
+    "identical": true
+  },
+  "final": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/ltx_video_i2v/phyground_chain_domino_gap/seed_42/phaselock/final.mp4",
+    "reference_sha256": "8fd67bf1ffb399e02f11a3d59bbb1b7ca9cffae3bf3da60246d6e9c9210bd44b",
+    "diagnostic_sha256": "8fd67bf1ffb399e02f11a3d59bbb1b7ca9cffae3bf3da60246d6e9c9210bd44b",
+    "identical": true
+  }
+}

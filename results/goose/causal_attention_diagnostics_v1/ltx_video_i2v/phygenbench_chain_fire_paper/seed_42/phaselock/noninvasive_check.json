@@ -1,0 +1,14 @@
+{
+  "few_step": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/ltx_video_i2v/phygenbench_chain_fire_paper/seed_42/phaselock/few_step.mp4",
+    "reference_sha256": "8d7ed736ea02bf8b7973b492b0c43cec3124c887a95bf6a26b1035785aa757a0",
+    "diagnostic_sha256": "8d7ed736ea02bf8b7973b492b0c43cec3124c887a95bf6a26b1035785aa757a0",
+    "identical": true
+  },
+  "final": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/ltx_video_i2v/phygenbench_chain_fire_paper/seed_42/phaselock/final.mp4",
+    "reference_sha256": "ac79576764d80fa2204e07e170c39e1785a4648c2c68632cad43d8ab53e3da14",
+    "diagnostic_sha256": "ac79576764d80fa2204e07e170c39e1785a4648c2c68632cad43d8ab53e3da14",
+    "identical": true
+  }
+}

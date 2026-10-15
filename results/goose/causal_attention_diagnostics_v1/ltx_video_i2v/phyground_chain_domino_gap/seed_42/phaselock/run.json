@@ -1,0 +1,150 @@
+{
+  "created_at": "2026-10-15T02:56:07.992098+00:00",
+  "slurm_job_id": "4671",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "bcdc9e9",
+  "study_id": "causal_attention_diagnostics_v1",
+  "parent_study_id": "formation_preservation_matrix_v1",
+  "model_key": "ltx_video_i2v",
+  "model": {
+    "label": "LTX-Video-0.9.5-I2V",
+    "pipeline": "ltx",
+    "repo_id": "Lightricks/LTX-Video-0.9.5",
+    "revision": "e58e28c39631af4d1468ee57a853764e11c1d37e",
+    "local_dir": "LTX-Video-0.9.5",
+    "height": 480,
+    "width": 704,
+    "num_frames": 121,
+    "fps": 30,
+    "guidance_scale": 3.0,
+    "transformer_calls_per_step": 1,
+    "cfg_layout": "batched_uncond_cond"
+  },
+  "case": {
+    "case_id": "phyground_chain_domino_gap",
+    "benchmark": "PhyGround",
+    "complexity": "multi_stage_causal_chain",
+    "source_id": "0050_perspective-center_trimmed-dominos-with-space",
+    "prompt": "Two rows of alternating black and white dominoes are set up on a wooden table with a gap between the two rows. A wooden stick attached to a rotating platform rotates clockwise and knocks the first domino in the first row. The dominoes in the first row topple over one by one, bridging the gap and causing the second row to also topple. Static shot with no camera movement.",
+    "physical_laws": [
+      "collision",
+      "momentum",
+      "impenetrability",
+      "gravity"
+    ],
+    "first_image": "phyground/0050_perspective-center_trimmed-dominos-with-space.jpg",
+    "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0050_perspective-center_trimmed-dominos-with-space.jpg"
+  },
+  "diagnostic_case": {
+    "case_id": "phyground_chain_domino_gap",
+    "role": "multi_stage_contact_chain",
+    "attention_targets": {
+      "wooden_stick": "wooden stick",
+      "first_row": "first row",
+      "second_row": "second row",
+      "event": "bridging the gap"
+    }
+  },
+  "seed": 42,
+  "arm": "phaselock",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/phyground/0050_perspective-center_trimmed-dominos-with-space.jpg",
+  "conditioning_sha256": "12f9bb1a83d6dcfcae4bff8dbd4f3d96f7ea764db6f0224c41a76462d9cb63f5",
+  "parent_protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "diagnostic_protocol": {
+    "seed": 42,
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "steps_zero_based": [
+      0,
+      1,
+      3,
+      7
+    ],
+    "query_topk_per_frame": 2,
+    "support_topk_per_frame": 8,
+    "query_chunk_size": 2,
+    "cross_query_chunk_size": 256,
+    "intervention": "none",
+    "noninvasive_reference_required": true,
+    "raw_latents_saved": false
+  },
+  "probe_model_config": {
+    "entity_map_layers": [
+      0,
+      1,
+      2
+    ],
+    "self_source_layer_pairs": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ]
+    ]
+  },
+  "grid_thw": [
+    16,
+    15,
+    22
+  ],
+  "phaselock_revision_expected": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "phaselock_revision_actual": "4ebb65ba1348e754723f08a190723cf82294db19",
+  "noninvasive_video_check": {
+    "few_step": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/ltx_video_i2v/phyground_chain_domino_gap/seed_42/phaselock/few_step.mp4",
+      "reference_sha256": "b23d7778136f7b3efc146e019bcb13aa35b3f52e38a9d5ca02207a548dfad059",
+      "diagnostic_sha256": "b23d7778136f7b3efc146e019bcb13aa35b3f52e38a9d5ca02207a548dfad059",
+      "identical": true
+    },
+    "final": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/ltx_video_i2v/phyground_chain_domino_gap/seed_42/phaselock/final.mp4",
+      "reference_sha256": "8fd67bf1ffb399e02f11a3d59bbb1b7ca9cffae3bf3da60246d6e9c9210bd44b",
+      "diagnostic_sha256": "8fd67bf1ffb399e02f11a3d59bbb1b7ca9cffae3bf3da60246d6e9c9210bd44b",
+      "identical": true
+    }
+  },
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_maps": "attention/attention_maps.npz",
+    "attention_metadata": "attention/attention_metadata.json",
+    "noninvasive_check": "noninvasive_check.json"
+  },
+  "intervention_enabled": false,
+  "raw_latents_saved": false
+}

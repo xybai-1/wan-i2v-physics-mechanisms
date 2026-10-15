@@ -1,0 +1,14 @@
+{
+  "few_step": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/physics_iq_chain_weight_protects_duck/seed_42/phaselock/few_step.mp4",
+    "reference_sha256": "1b6488846df87f6a80f5b53b33da5eefa2dd2f9056c8db41d33e6aab540008c2",
+    "diagnostic_sha256": "1b6488846df87f6a80f5b53b33da5eefa2dd2f9056c8db41d33e6aab540008c2",
+    "identical": true
+  },
+  "final": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/physics_iq_chain_weight_protects_duck/seed_42/phaselock/final.mp4",
+    "reference_sha256": "df5a1371ee1a68f0f32130e9c4a805b30839a7c6b7e5deba99616575d6979d40",
+    "diagnostic_sha256": "df5a1371ee1a68f0f32130e9c4a805b30839a7c6b7e5deba99616575d6979d40",
+    "identical": true
+  }
+}

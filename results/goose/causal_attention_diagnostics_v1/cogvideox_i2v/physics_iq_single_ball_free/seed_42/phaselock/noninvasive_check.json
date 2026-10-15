@@ -1,0 +1,14 @@
+{
+  "few_step": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/cogvideox_i2v/physics_iq_single_ball_free/seed_42/phaselock/few_step.mp4",
+    "reference_sha256": "7cc90aff9f190077ebe0cf5f0386125495df6619e90454ae1003e7dec45feff9",
+    "diagnostic_sha256": "7cc90aff9f190077ebe0cf5f0386125495df6619e90454ae1003e7dec45feff9",
+    "identical": true
+  },
+  "final": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/cogvideox_i2v/physics_iq_single_ball_free/seed_42/phaselock/final.mp4",
+    "reference_sha256": "28ba794655c353710de5139eec40f99e94dd201f6ba0af7d1051abb38f5459fd",
+    "diagnostic_sha256": "28ba794655c353710de5139eec40f99e94dd201f6ba0af7d1051abb38f5459fd",
+    "identical": true
+  }
+}

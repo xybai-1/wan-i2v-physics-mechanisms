@@ -1,0 +1,14 @@
+{
+  "few_step": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/cogvideox_i2v/physics_iq_chain_weight_protects_duck/seed_42/baseline/few_step.mp4",
+    "reference_sha256": "786f4ba1b59e5a7f46f56491ba6aa47e1a7a6e6793940f1bd030d6592282892c",
+    "diagnostic_sha256": "786f4ba1b59e5a7f46f56491ba6aa47e1a7a6e6793940f1bd030d6592282892c",
+    "identical": true
+  },
+  "final": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/cogvideox_i2v/physics_iq_chain_weight_protects_duck/seed_42/baseline/final.mp4",
+    "reference_sha256": "b6e91e766eb0185b1f3776e0ae0957bb0330cc7f97c66bd53ad1f03b9b7c4cca",
+    "diagnostic_sha256": "b6e91e766eb0185b1f3776e0ae0957bb0330cc7f97c66bd53ad1f03b9b7c4cca",
+    "identical": true
+  }
+}

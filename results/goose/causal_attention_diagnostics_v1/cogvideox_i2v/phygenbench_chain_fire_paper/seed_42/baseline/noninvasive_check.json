@@ -1,0 +1,14 @@
+{
+  "few_step": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/cogvideox_i2v/phygenbench_chain_fire_paper/seed_42/baseline/few_step.mp4",
+    "reference_sha256": "6a4afa6b85a656b2a1fef9fce7b8b245a8b10f9ecf4da781e1451bf3b455d98f",
+    "diagnostic_sha256": "6a4afa6b85a656b2a1fef9fce7b8b245a8b10f9ecf4da781e1451bf3b455d98f",
+    "identical": true
+  },
+  "final": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/cogvideox_i2v/phygenbench_chain_fire_paper/seed_42/baseline/final.mp4",
+    "reference_sha256": "c30163319fa49e00a56065a4c755146a952770f2fe3e4fc8f3da2b50c23ac264",
+    "diagnostic_sha256": "c30163319fa49e00a56065a4c755146a952770f2fe3e4fc8f3da2b50c23ac264",
+    "identical": true
+  }
+}

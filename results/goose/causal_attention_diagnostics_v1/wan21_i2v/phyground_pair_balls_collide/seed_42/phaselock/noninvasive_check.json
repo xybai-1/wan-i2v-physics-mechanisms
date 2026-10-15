@@ -1,0 +1,14 @@
+{
+  "few_step": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phyground_pair_balls_collide/seed_42/phaselock/few_step.mp4",
+    "reference_sha256": "6b5d905c2fcaf25d4f24a883f226dbe8e42d1da86bf231cc25296cabcf5ba2af",
+    "diagnostic_sha256": "6b5d905c2fcaf25d4f24a883f226dbe8e42d1da86bf231cc25296cabcf5ba2af",
+    "identical": true
+  },
+  "final": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phyground_pair_balls_collide/seed_42/phaselock/final.mp4",
+    "reference_sha256": "bd836cda4f095c35f62fef80a9949a411357f25dc306fd0f2af9a0b90afcef9f",
+    "diagnostic_sha256": "bd836cda4f095c35f62fef80a9949a411357f25dc306fd0f2af9a0b90afcef9f",
+    "identical": true
+  }
+}

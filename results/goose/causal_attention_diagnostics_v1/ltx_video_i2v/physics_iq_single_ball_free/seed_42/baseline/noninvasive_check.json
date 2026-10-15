@@ -1,0 +1,14 @@
+{
+  "few_step": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/ltx_video_i2v/physics_iq_single_ball_free/seed_42/baseline/few_step.mp4",
+    "reference_sha256": "2f02c31c11059c31630937197971301a258b4b1954dcf4623b6d641b72dd54ea",
+    "diagnostic_sha256": "2f02c31c11059c31630937197971301a258b4b1954dcf4623b6d641b72dd54ea",
+    "identical": true
+  },
+  "final": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/ltx_video_i2v/physics_iq_single_ball_free/seed_42/baseline/final.mp4",
+    "reference_sha256": "f7b8ceddd814fecdcbb54d911a6bac5d034545d527fa322cda4aab64c91bcce0",
+    "diagnostic_sha256": "f7b8ceddd814fecdcbb54d911a6bac5d034545d527fa322cda4aab64c91bcce0",
+    "identical": true
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "few_step": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/ltx_video_i2v/phyground_chain_domino_gap/seed_42/baseline/few_step.mp4",
+    "reference_sha256": "b23d7778136f7b3efc146e019bcb13aa35b3f52e38a9d5ca02207a548dfad059",
+    "diagnostic_sha256": "b23d7778136f7b3efc146e019bcb13aa35b3f52e38a9d5ca02207a548dfad059",
+    "identical": true
+  },
+  "final": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/ltx_video_i2v/phyground_chain_domino_gap/seed_42/baseline/final.mp4",
+    "reference_sha256": "acdb55bd428c3c3a7ed1cce17825818e76ac91650fdf3b7aed8ec6a7ff385c03",
+    "diagnostic_sha256": "acdb55bd428c3c3a7ed1cce17825818e76ac91650fdf3b7aed8ec6a7ff385c03",
+    "identical": true
+  }
+}
