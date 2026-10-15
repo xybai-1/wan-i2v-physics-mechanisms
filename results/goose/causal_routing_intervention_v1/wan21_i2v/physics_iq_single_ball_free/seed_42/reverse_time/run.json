@@ -1,0 +1,189 @@
+{
+  "created_at": "2026-10-15T14:35:43.205595+00:00",
+  "slurm_job_id": "4686",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "0d2e4486dc9f4cc88b8a412901e57836fc4d0fc5",
+  "study_id": "causal_routing_intervention_v1",
+  "parent_study_id": "causal_attention_diagnostics_v1",
+  "model_key": "wan21_i2v",
+  "model": {
+    "label": "Wan2.1-I2V-14B",
+    "pipeline": "wan",
+    "repo_id": "Wan-AI/Wan2.1-I2V-14B-720P-Diffusers",
+    "revision": "eb849f76dfa246545b65774a9e25943ee69b3fa3",
+    "local_dir": "Wan2.1-I2V-14B-720P-Diffusers",
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "fps": 16,
+    "guidance_scale": 5.0,
+    "transformer_calls_per_step": 2,
+    "cfg_layout": "separate_calls"
+  },
+  "case": {
+    "case_id": "physics_iq_single_ball_free",
+    "benchmark": "Physics-IQ Verified",
+    "complexity": "single_entity_motion",
+    "source_id": "0012_perspective-right_trimmed-ball-hits-nothing",
+    "prompt": "Static locked-off single-shot with fixed frame throughout filmed with constant framerate in real-time. The scene shows a realistic scientific demonstration. The scene only contains the described setup and actions. A light-colored wooden coffee table with a few small objects on it, including a brown tennis ball and a smaller red ball. The orange tennis ball rolls straight out of the black pipe over the entire table towards the right side.",
+    "physical_laws": [
+      "inertia",
+      "gravity",
+      "rolling motion"
+    ],
+    "first_image": "physics_iq_verified/0012_perspective-right_trimmed-ball-hits-nothing.jpg",
+    "first_image_url": "https://storage.googleapis.com/physics-iq-benchmark/switch-frames/0012_switch-frames_anyFPS_perspective-right_trimmed-ball-hits-nothing.jpg"
+  },
+  "diagnostic_case": {
+    "case_id": "physics_iq_single_ball_free",
+    "role": "single_entity_control",
+    "attention_targets": {
+      "moving_ball": "orange tennis ball",
+      "table": "wooden coffee table",
+      "event": "rolls straight"
+    }
+  },
+  "seed": 42,
+  "variant": "reverse_time",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/physics_iq_verified/0012_perspective-right_trimmed-ball-hits-nothing.jpg",
+  "conditioning_sha256": "1b096a5b5b561acba1c1999ba49553a8b120a246687dfd260b44c7deebfcbddb",
+  "parent_protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "intervention_protocol": {
+    "steps_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "entity_map_layers": [
+      0,
+      1,
+      32,
+      37
+    ],
+    "self_source_layer_pairs": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        33,
+        32
+      ],
+      [
+        38,
+        37
+      ]
+    ],
+    "self_layers": [
+      1,
+      2,
+      33,
+      38
+    ],
+    "query_topk_per_frame": 2,
+    "support_topk_per_frame": 8,
+    "query_chunk_size": 2,
+    "cross_query_chunk_size": 256,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "strength_distribution": "total_strength divided equally across selected layers and semantic edges",
+    "route_operator": "receiver <- receiver + alpha * (mean(source_support) - receiver)",
+    "branch": "conditional CFG branch only",
+    "raw_latents_saved": false
+  },
+  "intervention_plan": {
+    "mode": "reverse_time",
+    "steps_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "self_layers": [
+      1,
+      2,
+      33,
+      38
+    ],
+    "support_topk_per_frame": 8,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "edges": [
+      {
+        "source": "moving_ball",
+        "receiver": "table"
+      }
+    ]
+  },
+  "grid_thw": [
+    21,
+    30,
+    52
+  ],
+  "reference_check": {
+    "few_step": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/physics_iq_single_ball_free/seed_42/baseline/few_step.mp4",
+      "reference_sha256": "aa4d5dd47ddf2767a2c3a1a9eb4d7366518ae2adb3d5564a7eb36771770b3ba1",
+      "intervention_sha256": "aa4d5dd47ddf2767a2c3a1a9eb4d7366518ae2adb3d5564a7eb36771770b3ba1",
+      "identical": true
+    },
+    "final": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/physics_iq_single_ball_free/seed_42/baseline/final.mp4",
+      "reference_sha256": "1dc851776ddc07005e689fd1d236222ee579816fb85706deff56db4ef2a46c0d",
+      "intervention_sha256": "c73f9bc440a6f05a37a8ae1aab071374a3667cdbca0683d942e246497eea8a92",
+      "identical": false
+    }
+  },
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_maps": "attention/attention_maps.npz",
+    "attention_metadata": "attention/attention_metadata.json",
+    "reference_check": "reference_check.json"
+  },
+  "intervention_enabled": true,
+  "raw_latents_saved": false
+}

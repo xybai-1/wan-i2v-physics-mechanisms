@@ -105,6 +105,7 @@ def main() -> None:
         steps = metadata["plan"]["steps"]
         entity_layers = metadata["plan"]["entity_map_layers"]
         labels = list(metadata["tokenization"]["positions"])
+        display_arm = run.get("arm", run.get("variant", "unknown"))
         for label in labels:
             tiles = {}
             for step in steps:
@@ -115,7 +116,7 @@ def main() -> None:
                 tiles,
                 steps,
                 entity_layers,
-                f"{run['model_key']} | {run['case']['case_id']} | {run['arm']} | entity={label}",
+                f"{run['model_key']} | {run['case']['case_id']} | {display_arm} | entity={label}",
                 output_dir / f"entity_{safe(label)}.png",
             )
         self_layers = [item[0] for item in metadata["plan"]["self_source_layer_pairs"]]
@@ -131,7 +132,7 @@ def main() -> None:
                 tiles,
                 steps,
                 self_layers,
-                f"{run['model_key']} | {run['case']['case_id']} | {run['arm']} | {source} -> {target}",
+                f"{run['model_key']} | {run['case']['case_id']} | {display_arm} | {source} -> {target}",
                 output_dir / f"directed_{safe(source)}_to_{safe(target)}.png",
             )
     (output_dir / "attention_summary.json").write_text(
@@ -139,7 +140,7 @@ def main() -> None:
             {
                 "model_key": run["model_key"],
                 "case_id": run["case"]["case_id"],
-                "arm": run["arm"],
+                "arm": display_arm,
                 "arrays": summary,
                 "interpretation": metadata["interpretation"],
             },

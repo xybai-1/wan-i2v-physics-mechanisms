@@ -1,0 +1,1167 @@
+{
+  "created_at": "2026-10-15T13:46:11.433800+00:00",
+  "slurm_job_id": "4685",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "0d2e4486dc9f4cc88b8a412901e57836fc4d0fc5",
+  "study_id": "causal_routing_intervention_v1",
+  "parent_study_id": "causal_attention_diagnostics_v1",
+  "model_key": "wan21_i2v",
+  "model": {
+    "label": "Wan2.1-I2V-14B",
+    "pipeline": "wan",
+    "repo_id": "Wan-AI/Wan2.1-I2V-14B-720P-Diffusers",
+    "revision": "eb849f76dfa246545b65774a9e25943ee69b3fa3",
+    "local_dir": "Wan2.1-I2V-14B-720P-Diffusers",
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "fps": 16,
+    "guidance_scale": 5.0,
+    "transformer_calls_per_step": 2,
+    "cfg_layout": "separate_calls"
+  },
+  "case": {
+    "case_id": "phyground_pair_balls_collide",
+    "benchmark": "PhyGround",
+    "complexity": "two_entity_contact",
+    "source_id": "0032_perspective-center_trimmed-balls-collide",
+    "prompt": "A light-colored wooden tabletop with two pipes at the edges. A blue and yellow tennis ball roll out of the pipes and towards each other. The two balls collide and bounce off each other. Static shot with no camera movement.",
+    "physical_laws": [
+      "momentum",
+      "collision",
+      "impenetrability",
+      "inertia"
+    ],
+    "first_image": "phyground/0032_perspective-center_trimmed-balls-collide.jpg",
+    "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0032_perspective-center_trimmed-balls-collide.jpg"
+  },
+  "diagnostic_case": {
+    "case_id": "phyground_pair_balls_collide",
+    "role": "two_entity_contact",
+    "attention_targets": {
+      "blue_ball": "blue",
+      "yellow_ball": "yellow tennis ball",
+      "event": "collide"
+    }
+  },
+  "seed": 42,
+  "variant": "forward",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/phyground/0032_perspective-center_trimmed-balls-collide.jpg",
+  "conditioning_sha256": "c2956d6e523b4ec30f47f4bf117707a89b25d490e9b53ab9e86ab9d325fe5766",
+  "parent_protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "intervention_protocol": {
+    "steps_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "entity_map_layers": [
+      0,
+      1,
+      32,
+      37
+    ],
+    "self_source_layer_pairs": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        33,
+        32
+      ],
+      [
+        38,
+        37
+      ]
+    ],
+    "self_layers": [
+      1,
+      2,
+      33,
+      38
+    ],
+    "query_topk_per_frame": 2,
+    "support_topk_per_frame": 8,
+    "query_chunk_size": 2,
+    "cross_query_chunk_size": 256,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "strength_distribution": "total_strength divided equally across selected layers and semantic edges",
+    "route_operator": "receiver <- receiver + alpha * (mean(source_support) - receiver)",
+    "branch": "conditional CFG branch only",
+    "raw_latents_saved": false
+  },
+  "intervention_plan": {
+    "mode": "forward",
+    "steps_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "self_layers": [
+      1,
+      2,
+      33,
+      38
+    ],
+    "support_topk_per_frame": 8,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "edges": [
+      {
+        "source": "blue_ball",
+        "receiver": "yellow_ball"
+      },
+      {
+        "source": "yellow_ball",
+        "receiver": "blue_ball"
+      }
+    ]
+  },
+  "grid_thw": [
+    21,
+    30,
+    52
+  ],
+  "reference_check": {
+    "few_step": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phyground_pair_balls_collide/seed_42/baseline/few_step.mp4",
+      "reference_sha256": "6b5d905c2fcaf25d4f24a883f226dbe8e42d1da86bf231cc25296cabcf5ba2af",
+      "intervention_sha256": "6b5d905c2fcaf25d4f24a883f226dbe8e42d1da86bf231cc25296cabcf5ba2af",
+      "identical": true
+    },
+    "final": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phyground_pair_balls_collide/seed_42/baseline/final.mp4",
+      "reference_sha256": "d6af7235d66895d34f234b9beb3dd1423e129da80aea79f574c4d744c2755571",
+      "intervention_sha256": "74eeb8a8b15059cedeb457b3be4810087094baa64481ebe47d7688aa6e8675fe",
+      "identical": false
+    }
+  },
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_maps": "attention/attention_maps.npz",
+    "attention_metadata": "attention/attention_metadata.json",
+    "reference_check": "reference_check.json"
+  },
+  "intervention_enabled": true,
+  "raw_latents_saved": false
+}
+{
+  "created_at": "2026-10-15T13:58:47.303436+00:00",
+  "slurm_job_id": "4685",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "0d2e4486dc9f4cc88b8a412901e57836fc4d0fc5",
+  "study_id": "causal_routing_intervention_v1",
+  "parent_study_id": "causal_attention_diagnostics_v1",
+  "model_key": "wan21_i2v",
+  "model": {
+    "label": "Wan2.1-I2V-14B",
+    "pipeline": "wan",
+    "repo_id": "Wan-AI/Wan2.1-I2V-14B-720P-Diffusers",
+    "revision": "eb849f76dfa246545b65774a9e25943ee69b3fa3",
+    "local_dir": "Wan2.1-I2V-14B-720P-Diffusers",
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "fps": 16,
+    "guidance_scale": 5.0,
+    "transformer_calls_per_step": 2,
+    "cfg_layout": "separate_calls"
+  },
+  "case": {
+    "case_id": "phyground_pair_balls_collide",
+    "benchmark": "PhyGround",
+    "complexity": "two_entity_contact",
+    "source_id": "0032_perspective-center_trimmed-balls-collide",
+    "prompt": "A light-colored wooden tabletop with two pipes at the edges. A blue and yellow tennis ball roll out of the pipes and towards each other. The two balls collide and bounce off each other. Static shot with no camera movement.",
+    "physical_laws": [
+      "momentum",
+      "collision",
+      "impenetrability",
+      "inertia"
+    ],
+    "first_image": "phyground/0032_perspective-center_trimmed-balls-collide.jpg",
+    "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0032_perspective-center_trimmed-balls-collide.jpg"
+  },
+  "diagnostic_case": {
+    "case_id": "phyground_pair_balls_collide",
+    "role": "two_entity_contact",
+    "attention_targets": {
+      "blue_ball": "blue",
+      "yellow_ball": "yellow tennis ball",
+      "event": "collide"
+    }
+  },
+  "seed": 42,
+  "variant": "reverse_time",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/phyground/0032_perspective-center_trimmed-balls-collide.jpg",
+  "conditioning_sha256": "c2956d6e523b4ec30f47f4bf117707a89b25d490e9b53ab9e86ab9d325fe5766",
+  "parent_protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "intervention_protocol": {
+    "steps_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "entity_map_layers": [
+      0,
+      1,
+      32,
+      37
+    ],
+    "self_source_layer_pairs": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        33,
+        32
+      ],
+      [
+        38,
+        37
+      ]
+    ],
+    "self_layers": [
+      1,
+      2,
+      33,
+      38
+    ],
+    "query_topk_per_frame": 2,
+    "support_topk_per_frame": 8,
+    "query_chunk_size": 2,
+    "cross_query_chunk_size": 256,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "strength_distribution": "total_strength divided equally across selected layers and semantic edges",
+    "route_operator": "receiver <- receiver + alpha * (mean(source_support) - receiver)",
+    "branch": "conditional CFG branch only",
+    "raw_latents_saved": false
+  },
+  "intervention_plan": {
+    "mode": "reverse_time",
+    "steps_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "self_layers": [
+      1,
+      2,
+      33,
+      38
+    ],
+    "support_topk_per_frame": 8,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "edges": [
+      {
+        "source": "blue_ball",
+        "receiver": "yellow_ball"
+      },
+      {
+        "source": "yellow_ball",
+        "receiver": "blue_ball"
+      }
+    ]
+  },
+  "grid_thw": [
+    21,
+    30,
+    52
+  ],
+  "reference_check": {
+    "few_step": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phyground_pair_balls_collide/seed_42/baseline/few_step.mp4",
+      "reference_sha256": "6b5d905c2fcaf25d4f24a883f226dbe8e42d1da86bf231cc25296cabcf5ba2af",
+      "intervention_sha256": "6b5d905c2fcaf25d4f24a883f226dbe8e42d1da86bf231cc25296cabcf5ba2af",
+      "identical": true
+    },
+    "final": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phyground_pair_balls_collide/seed_42/baseline/final.mp4",
+      "reference_sha256": "d6af7235d66895d34f234b9beb3dd1423e129da80aea79f574c4d744c2755571",
+      "intervention_sha256": "2b06f50297e56d7fce8d357317008234efee09f3475afc4688d0daa109ff302e",
+      "identical": false
+    }
+  },
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_maps": "attention/attention_maps.npz",
+    "attention_metadata": "attention/attention_metadata.json",
+    "reference_check": "reference_check.json"
+  },
+  "intervention_enabled": true,
+  "raw_latents_saved": false
+}
+{
+  "created_at": "2026-10-15T14:11:16.929688+00:00",
+  "slurm_job_id": "4685",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "0d2e4486dc9f4cc88b8a412901e57836fc4d0fc5",
+  "study_id": "causal_routing_intervention_v1",
+  "parent_study_id": "causal_attention_diagnostics_v1",
+  "model_key": "wan21_i2v",
+  "model": {
+    "label": "Wan2.1-I2V-14B",
+    "pipeline": "wan",
+    "repo_id": "Wan-AI/Wan2.1-I2V-14B-720P-Diffusers",
+    "revision": "eb849f76dfa246545b65774a9e25943ee69b3fa3",
+    "local_dir": "Wan2.1-I2V-14B-720P-Diffusers",
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "fps": 16,
+    "guidance_scale": 5.0,
+    "transformer_calls_per_step": 2,
+    "cfg_layout": "separate_calls"
+  },
+  "case": {
+    "case_id": "phyground_pair_balls_collide",
+    "benchmark": "PhyGround",
+    "complexity": "two_entity_contact",
+    "source_id": "0032_perspective-center_trimmed-balls-collide",
+    "prompt": "A light-colored wooden tabletop with two pipes at the edges. A blue and yellow tennis ball roll out of the pipes and towards each other. The two balls collide and bounce off each other. Static shot with no camera movement.",
+    "physical_laws": [
+      "momentum",
+      "collision",
+      "impenetrability",
+      "inertia"
+    ],
+    "first_image": "phyground/0032_perspective-center_trimmed-balls-collide.jpg",
+    "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0032_perspective-center_trimmed-balls-collide.jpg"
+  },
+  "diagnostic_case": {
+    "case_id": "phyground_pair_balls_collide",
+    "role": "two_entity_contact",
+    "attention_targets": {
+      "blue_ball": "blue",
+      "yellow_ball": "yellow tennis ball",
+      "event": "collide"
+    }
+  },
+  "seed": 42,
+  "variant": "same_time",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/phyground/0032_perspective-center_trimmed-balls-collide.jpg",
+  "conditioning_sha256": "c2956d6e523b4ec30f47f4bf117707a89b25d490e9b53ab9e86ab9d325fe5766",
+  "parent_protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "intervention_protocol": {
+    "steps_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "entity_map_layers": [
+      0,
+      1,
+      32,
+      37
+    ],
+    "self_source_layer_pairs": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        33,
+        32
+      ],
+      [
+        38,
+        37
+      ]
+    ],
+    "self_layers": [
+      1,
+      2,
+      33,
+      38
+    ],
+    "query_topk_per_frame": 2,
+    "support_topk_per_frame": 8,
+    "query_chunk_size": 2,
+    "cross_query_chunk_size": 256,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "strength_distribution": "total_strength divided equally across selected layers and semantic edges",
+    "route_operator": "receiver <- receiver + alpha * (mean(source_support) - receiver)",
+    "branch": "conditional CFG branch only",
+    "raw_latents_saved": false
+  },
+  "intervention_plan": {
+    "mode": "same_time",
+    "steps_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "self_layers": [
+      1,
+      2,
+      33,
+      38
+    ],
+    "support_topk_per_frame": 8,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "edges": [
+      {
+        "source": "blue_ball",
+        "receiver": "yellow_ball"
+      },
+      {
+        "source": "yellow_ball",
+        "receiver": "blue_ball"
+      }
+    ]
+  },
+  "grid_thw": [
+    21,
+    30,
+    52
+  ],
+  "reference_check": {
+    "few_step": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phyground_pair_balls_collide/seed_42/baseline/few_step.mp4",
+      "reference_sha256": "6b5d905c2fcaf25d4f24a883f226dbe8e42d1da86bf231cc25296cabcf5ba2af",
+      "intervention_sha256": "6b5d905c2fcaf25d4f24a883f226dbe8e42d1da86bf231cc25296cabcf5ba2af",
+      "identical": true
+    },
+    "final": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phyground_pair_balls_collide/seed_42/baseline/final.mp4",
+      "reference_sha256": "d6af7235d66895d34f234b9beb3dd1423e129da80aea79f574c4d744c2755571",
+      "intervention_sha256": "0f9e469321848d8fdd0718f08564e2e043580204a3dbb9abea66b49304727191",
+      "identical": false
+    }
+  },
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_maps": "attention/attention_maps.npz",
+    "attention_metadata": "attention/attention_metadata.json",
+    "reference_check": "reference_check.json"
+  },
+  "intervention_enabled": true,
+  "raw_latents_saved": false
+}
+{
+  "created_at": "2026-10-15T14:23:47.556022+00:00",
+  "slurm_job_id": "4685",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "0d2e4486dc9f4cc88b8a412901e57836fc4d0fc5",
+  "study_id": "causal_routing_intervention_v1",
+  "parent_study_id": "causal_attention_diagnostics_v1",
+  "model_key": "wan21_i2v",
+  "model": {
+    "label": "Wan2.1-I2V-14B",
+    "pipeline": "wan",
+    "repo_id": "Wan-AI/Wan2.1-I2V-14B-720P-Diffusers",
+    "revision": "eb849f76dfa246545b65774a9e25943ee69b3fa3",
+    "local_dir": "Wan2.1-I2V-14B-720P-Diffusers",
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "fps": 16,
+    "guidance_scale": 5.0,
+    "transformer_calls_per_step": 2,
+    "cfg_layout": "separate_calls"
+  },
+  "case": {
+    "case_id": "phyground_chain_domino_gap",
+    "benchmark": "PhyGround",
+    "complexity": "multi_stage_causal_chain",
+    "source_id": "0050_perspective-center_trimmed-dominos-with-space",
+    "prompt": "Two rows of alternating black and white dominoes are set up on a wooden table with a gap between the two rows. A wooden stick attached to a rotating platform rotates clockwise and knocks the first domino in the first row. The dominoes in the first row topple over one by one, bridging the gap and causing the second row to also topple. Static shot with no camera movement.",
+    "physical_laws": [
+      "collision",
+      "momentum",
+      "impenetrability",
+      "gravity"
+    ],
+    "first_image": "phyground/0050_perspective-center_trimmed-dominos-with-space.jpg",
+    "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0050_perspective-center_trimmed-dominos-with-space.jpg"
+  },
+  "diagnostic_case": {
+    "case_id": "phyground_chain_domino_gap",
+    "role": "multi_stage_contact_chain",
+    "attention_targets": {
+      "wooden_stick": "wooden stick",
+      "first_row": "first row",
+      "second_row": "second row",
+      "event": "bridging the gap"
+    }
+  },
+  "seed": 42,
+  "variant": "forward",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/phyground/0050_perspective-center_trimmed-dominos-with-space.jpg",
+  "conditioning_sha256": "12f9bb1a83d6dcfcae4bff8dbd4f3d96f7ea764db6f0224c41a76462d9cb63f5",
+  "parent_protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "intervention_protocol": {
+    "steps_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "entity_map_layers": [
+      0,
+      1,
+      32,
+      37
+    ],
+    "self_source_layer_pairs": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        33,
+        32
+      ],
+      [
+        38,
+        37
+      ]
+    ],
+    "self_layers": [
+      1,
+      2,
+      33,
+      38
+    ],
+    "query_topk_per_frame": 2,
+    "support_topk_per_frame": 8,
+    "query_chunk_size": 2,
+    "cross_query_chunk_size": 256,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "strength_distribution": "total_strength divided equally across selected layers and semantic edges",
+    "route_operator": "receiver <- receiver + alpha * (mean(source_support) - receiver)",
+    "branch": "conditional CFG branch only",
+    "raw_latents_saved": false
+  },
+  "intervention_plan": {
+    "mode": "forward",
+    "steps_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "self_layers": [
+      1,
+      2,
+      33,
+      38
+    ],
+    "support_topk_per_frame": 8,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "edges": [
+      {
+        "source": "wooden_stick",
+        "receiver": "first_row"
+      },
+      {
+        "source": "first_row",
+        "receiver": "second_row"
+      }
+    ]
+  },
+  "grid_thw": [
+    21,
+    30,
+    52
+  ],
+  "reference_check": {
+    "few_step": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phyground_chain_domino_gap/seed_42/baseline/few_step.mp4",
+      "reference_sha256": "ac2b1043db18116779d47f4efc52bfaed4e694c12f7ec087abb05933a753a155",
+      "intervention_sha256": "ac2b1043db18116779d47f4efc52bfaed4e694c12f7ec087abb05933a753a155",
+      "identical": true
+    },
+    "final": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phyground_chain_domino_gap/seed_42/baseline/final.mp4",
+      "reference_sha256": "b826223361af51dbce22374d8770a7b59f7518a7d918a4ddd2b5a42c714c9c44",
+      "intervention_sha256": "ad45d0ed477be680aabbf895aeb19b84a2d1df7cf0bf93f138dc26cab694bac4",
+      "identical": false
+    }
+  },
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_maps": "attention/attention_maps.npz",
+    "attention_metadata": "attention/attention_metadata.json",
+    "reference_check": "reference_check.json"
+  },
+  "intervention_enabled": true,
+  "raw_latents_saved": false
+}
+{
+  "created_at": "2026-10-15T14:36:15.999184+00:00",
+  "slurm_job_id": "4685",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "0d2e4486dc9f4cc88b8a412901e57836fc4d0fc5",
+  "study_id": "causal_routing_intervention_v1",
+  "parent_study_id": "causal_attention_diagnostics_v1",
+  "model_key": "wan21_i2v",
+  "model": {
+    "label": "Wan2.1-I2V-14B",
+    "pipeline": "wan",
+    "repo_id": "Wan-AI/Wan2.1-I2V-14B-720P-Diffusers",
+    "revision": "eb849f76dfa246545b65774a9e25943ee69b3fa3",
+    "local_dir": "Wan2.1-I2V-14B-720P-Diffusers",
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "fps": 16,
+    "guidance_scale": 5.0,
+    "transformer_calls_per_step": 2,
+    "cfg_layout": "separate_calls"
+  },
+  "case": {
+    "case_id": "phyground_chain_domino_gap",
+    "benchmark": "PhyGround",
+    "complexity": "multi_stage_causal_chain",
+    "source_id": "0050_perspective-center_trimmed-dominos-with-space",
+    "prompt": "Two rows of alternating black and white dominoes are set up on a wooden table with a gap between the two rows. A wooden stick attached to a rotating platform rotates clockwise and knocks the first domino in the first row. The dominoes in the first row topple over one by one, bridging the gap and causing the second row to also topple. Static shot with no camera movement.",
+    "physical_laws": [
+      "collision",
+      "momentum",
+      "impenetrability",
+      "gravity"
+    ],
+    "first_image": "phyground/0050_perspective-center_trimmed-dominos-with-space.jpg",
+    "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0050_perspective-center_trimmed-dominos-with-space.jpg"
+  },
+  "diagnostic_case": {
+    "case_id": "phyground_chain_domino_gap",
+    "role": "multi_stage_contact_chain",
+    "attention_targets": {
+      "wooden_stick": "wooden stick",
+      "first_row": "first row",
+      "second_row": "second row",
+      "event": "bridging the gap"
+    }
+  },
+  "seed": 42,
+  "variant": "reverse_time",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/phyground/0050_perspective-center_trimmed-dominos-with-space.jpg",
+  "conditioning_sha256": "12f9bb1a83d6dcfcae4bff8dbd4f3d96f7ea764db6f0224c41a76462d9cb63f5",
+  "parent_protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "intervention_protocol": {
+    "steps_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "entity_map_layers": [
+      0,
+      1,
+      32,
+      37
+    ],
+    "self_source_layer_pairs": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        33,
+        32
+      ],
+      [
+        38,
+        37
+      ]
+    ],
+    "self_layers": [
+      1,
+      2,
+      33,
+      38
+    ],
+    "query_topk_per_frame": 2,
+    "support_topk_per_frame": 8,
+    "query_chunk_size": 2,
+    "cross_query_chunk_size": 256,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "strength_distribution": "total_strength divided equally across selected layers and semantic edges",
+    "route_operator": "receiver <- receiver + alpha * (mean(source_support) - receiver)",
+    "branch": "conditional CFG branch only",
+    "raw_latents_saved": false
+  },
+  "intervention_plan": {
+    "mode": "reverse_time",
+    "steps_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "self_layers": [
+      1,
+      2,
+      33,
+      38
+    ],
+    "support_topk_per_frame": 8,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "edges": [
+      {
+        "source": "wooden_stick",
+        "receiver": "first_row"
+      },
+      {
+        "source": "first_row",
+        "receiver": "second_row"
+      }
+    ]
+  },
+  "grid_thw": [
+    21,
+    30,
+    52
+  ],
+  "reference_check": {
+    "few_step": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phyground_chain_domino_gap/seed_42/baseline/few_step.mp4",
+      "reference_sha256": "ac2b1043db18116779d47f4efc52bfaed4e694c12f7ec087abb05933a753a155",
+      "intervention_sha256": "ac2b1043db18116779d47f4efc52bfaed4e694c12f7ec087abb05933a753a155",
+      "identical": true
+    },
+    "final": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phyground_chain_domino_gap/seed_42/baseline/final.mp4",
+      "reference_sha256": "b826223361af51dbce22374d8770a7b59f7518a7d918a4ddd2b5a42c714c9c44",
+      "intervention_sha256": "67ec2ecb53c41b44def1f56afdb7a70a65d7e59ca4a5e959f24491ec624d4384",
+      "identical": false
+    }
+  },
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_maps": "attention/attention_maps.npz",
+    "attention_metadata": "attention/attention_metadata.json",
+    "reference_check": "reference_check.json"
+  },
+  "intervention_enabled": true,
+  "raw_latents_saved": false
+}
+{
+  "created_at": "2026-10-15T14:48:41.883534+00:00",
+  "slurm_job_id": "4685",
+  "host": "goose.egr.vcu.edu",
+  "study_revision": "0d2e4486dc9f4cc88b8a412901e57836fc4d0fc5",
+  "study_id": "causal_routing_intervention_v1",
+  "parent_study_id": "causal_attention_diagnostics_v1",
+  "model_key": "wan21_i2v",
+  "model": {
+    "label": "Wan2.1-I2V-14B",
+    "pipeline": "wan",
+    "repo_id": "Wan-AI/Wan2.1-I2V-14B-720P-Diffusers",
+    "revision": "eb849f76dfa246545b65774a9e25943ee69b3fa3",
+    "local_dir": "Wan2.1-I2V-14B-720P-Diffusers",
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "fps": 16,
+    "guidance_scale": 5.0,
+    "transformer_calls_per_step": 2,
+    "cfg_layout": "separate_calls"
+  },
+  "case": {
+    "case_id": "phyground_chain_domino_gap",
+    "benchmark": "PhyGround",
+    "complexity": "multi_stage_causal_chain",
+    "source_id": "0050_perspective-center_trimmed-dominos-with-space",
+    "prompt": "Two rows of alternating black and white dominoes are set up on a wooden table with a gap between the two rows. A wooden stick attached to a rotating platform rotates clockwise and knocks the first domino in the first row. The dominoes in the first row topple over one by one, bridging the gap and causing the second row to also topple. Static shot with no camera movement.",
+    "physical_laws": [
+      "collision",
+      "momentum",
+      "impenetrability",
+      "gravity"
+    ],
+    "first_image": "phyground/0050_perspective-center_trimmed-dominos-with-space.jpg",
+    "first_image_url": "https://huggingface.co/datasets/NU-World-Model-Embodied-AI/phyground/resolve/daafe35165db3c3f6832d92039c9ae8d6808274a/first_images/0050_perspective-center_trimmed-dominos-with-space.jpg"
+  },
+  "diagnostic_case": {
+    "case_id": "phyground_chain_domino_gap",
+    "role": "multi_stage_contact_chain",
+    "attention_targets": {
+      "wooden_stick": "wooden stick",
+      "first_row": "first row",
+      "second_row": "second row",
+      "event": "bridging the gap"
+    }
+  },
+  "seed": 42,
+  "variant": "same_time",
+  "conditioning_image": "/home/baix2/wan-i2v-state/data/mechanism-matrix-v1/phyground/0050_perspective-center_trimmed-dominos-with-space.jpg",
+  "conditioning_sha256": "12f9bb1a83d6dcfcae4bff8dbd4f3d96f7ea764db6f0224c41a76462d9cb63f5",
+  "parent_protocol": {
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "arms": [
+      "baseline",
+      "phaselock"
+    ],
+    "decode_steps_one_based": [
+      1,
+      2,
+      4,
+      8,
+      25,
+      50
+    ],
+    "full_attention_layer_scan": true,
+    "attention_storage": "sampled scalar activation statistics only; no attention matrices or latent tensors",
+    "negative_prompt": "",
+    "few_step_count": 2,
+    "num_inference_steps": 50,
+    "phaselock_guidance_strength": 0.05,
+    "phaselock_guide_start": 0,
+    "phaselock_guide_end": 25,
+    "conditioning_policy": "One frozen image per case is shared by every model, seed, and arm. Generation prompts are never rewritten per model or arm."
+  },
+  "intervention_protocol": {
+    "steps_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "entity_map_layers": [
+      0,
+      1,
+      32,
+      37
+    ],
+    "self_source_layer_pairs": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        33,
+        32
+      ],
+      [
+        38,
+        37
+      ]
+    ],
+    "self_layers": [
+      1,
+      2,
+      33,
+      38
+    ],
+    "query_topk_per_frame": 2,
+    "support_topk_per_frame": 8,
+    "query_chunk_size": 2,
+    "cross_query_chunk_size": 256,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "strength_distribution": "total_strength divided equally across selected layers and semantic edges",
+    "route_operator": "receiver <- receiver + alpha * (mean(source_support) - receiver)",
+    "branch": "conditional CFG branch only",
+    "raw_latents_saved": false
+  },
+  "intervention_plan": {
+    "mode": "same_time",
+    "steps_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "self_layers": [
+      1,
+      2,
+      33,
+      38
+    ],
+    "support_topk_per_frame": 8,
+    "temporal_lag_frames": 1,
+    "total_strength": 0.08,
+    "edges": [
+      {
+        "source": "wooden_stick",
+        "receiver": "first_row"
+      },
+      {
+        "source": "first_row",
+        "receiver": "second_row"
+      }
+    ]
+  },
+  "grid_thw": [
+    21,
+    30,
+    52
+  ],
+  "reference_check": {
+    "few_step": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phyground_chain_domino_gap/seed_42/baseline/few_step.mp4",
+      "reference_sha256": "ac2b1043db18116779d47f4efc52bfaed4e694c12f7ec087abb05933a753a155",
+      "intervention_sha256": "ac2b1043db18116779d47f4efc52bfaed4e694c12f7ec087abb05933a753a155",
+      "identical": true
+    },
+    "final": {
+      "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/phyground_chain_domino_gap/seed_42/baseline/final.mp4",
+      "reference_sha256": "b826223361af51dbce22374d8770a7b59f7518a7d918a4ddd2b5a42c714c9c44",
+      "intervention_sha256": "1f38d6d1f0b6ecd16ddd6a1e40911fd56599b7aec921b0a1c08307d808e8c5ad",
+      "identical": false
+    }
+  },
+  "torch_version": "2.6.0+cu126",
+  "diffusers_version": "0.35.2",
+  "outputs": {
+    "few_step": "few_step.mp4",
+    "final": "final.mp4",
+    "latent_delta_trace": "latent_delta_trace.json",
+    "attention_maps": "attention/attention_maps.npz",
+    "attention_metadata": "attention/attention_metadata.json",
+    "reference_check": "reference_check.json"
+  },
+  "intervention_enabled": true,
+  "raw_latents_saved": false
+}

@@ -1,0 +1,33 @@
+{
+  "study_id": "causal_routing_intervention_v1",
+  "frozen_revision": "0d2e4486dc9f4cc88b8a412901e57836fc4d0fc5",
+  "jobs": {
+    "smoke": {"job_id": "4680", "state": "COMPLETED", "elapsed": "00:37:18", "exit_code": "0:0"},
+    "full_shard_0": {"job_id": "4685", "state": "COMPLETED", "elapsed": "01:15:18", "exit_code": "0:0"},
+    "full_shard_1": {"job_id": "4686", "state": "COMPLETED", "elapsed": "01:14:39", "exit_code": "0:0"}
+  },
+  "validation": {
+    "valid": true,
+    "checked_runs": 12,
+    "expected_runs": 12,
+    "errors": [],
+    "exact_baseline_few_step_hashes": 12,
+    "distinct_decodable_final_videos": 12,
+    "diagnostic_events_per_run": 64,
+    "intervention_events_per_run": 32,
+    "attention_arrays": {
+      "default_cases": 384,
+      "domino_case": 640
+    }
+  },
+  "visual_review": {
+    "videos_corrupt": 0,
+    "catastrophic_forward_collapse": false,
+    "forward_specific_physical_improvements": 0,
+    "single_object_no_regression": true,
+    "collision_repaired": false,
+    "domino_gap_chain_repaired": false,
+    "fire_to_paper_chain_repaired": false
+  },
+  "conclusion": "The static early feature-transport intervention changes the sampling trajectory but shows no forward-direction-specific physical improvement over equal-mass reverse-time and same-time controls. Event-gated routing should be tested next before scaling across backbones."
+}

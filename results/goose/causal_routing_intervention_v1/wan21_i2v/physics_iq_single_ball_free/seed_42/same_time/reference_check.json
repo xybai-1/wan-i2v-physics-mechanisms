@@ -1,0 +1,14 @@
+{
+  "few_step": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/physics_iq_single_ball_free/seed_42/baseline/few_step.mp4",
+    "reference_sha256": "aa4d5dd47ddf2767a2c3a1a9eb4d7366518ae2adb3d5564a7eb36771770b3ba1",
+    "intervention_sha256": "aa4d5dd47ddf2767a2c3a1a9eb4d7366518ae2adb3d5564a7eb36771770b3ba1",
+    "identical": true
+  },
+  "final": {
+    "reference": "/home/baix2/wan-i2v-state/runs/mechanism-matrix-v1/wan21_i2v/physics_iq_single_ball_free/seed_42/baseline/final.mp4",
+    "reference_sha256": "1dc851776ddc07005e689fd1d236222ee579816fb85706deff56db4ef2a46c0d",
+    "intervention_sha256": "fa18bb7bc55d47321bb0d53a0f8955bae511d778222f783ff257632950adc196",
+    "identical": false
+  }
+}
